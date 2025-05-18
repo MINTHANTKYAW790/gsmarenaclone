@@ -1,0 +1,29 @@
+{
+    "private": true,
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build"
+    },
+    "devDependencies": {
+        "axios": "^1.1.2",
+        "husky": "^9.1.6",
+        "laravel-vite-plugin": "^0.7.8",
+        "lodash": "^4.17.19",
+        "postcss": "^8.1.14",
+        "sass": "~1.64.2",
+        "vite": "^4.5.14"
+    },
+    "dependencies": {
+        "admin-lte": "3.2",
+        "bootstrap": "4.6",
+        "datatables.net": "^2.3.0",
+        "datatables.net-bs4": "^2.3.0",
+        "datatables.net-fixedcolumns-bs4": "^5.0.0",
+        "gasparesganga-jquery-loading-overlay": "^2.1.7",
+        "jquery": "^3.7.1",
+        "load-awesome": "^1.1.0",
+        "toastr": "^2.1.4",
+        "tom-select": "^2.4.3",
+        "virtual-select-plugin": "^1.0.44"
+    }
+}

@@ -1,0 +1,168 @@
+@font-face {
+  font-family: Poppins;
+  src: url("../fonts/Poppins/Poppins-Regular.ttf") format("truetype");
+}
+
+.form-control-sm {
+  font-size: 12px !important;
+  height: calc(1.7125rem + 5px) !important;
+}
+
+body {
+  font-family: Poppins !important;
+  font-size: 12px !important;
+}
+
+.form-control-lg {
+  font-size: 12px !important;
+}
+
+.nav-link.active {
+  background-color: #6868AC !important;
+  color: #ffffff !important;
+}
+
+tr.hide-table-padding td {
+  padding: 0;
+}
+
+.content-header {
+  padding: 5px .5rem;
+}
+
+.custom-control-label::before {
+  top: 0.12rem !important;
+}
+
+.custom-control-label::after {
+  top: 0.12rem !important;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+}
+
+.pagination li {
+  margin: 0 5px;
+}
+
+textarea.form-control {
+  height: auto !important;
+}
+
+.action-width {
+  width: 100px;
+}
+
+h4 {
+  font-size: 1.2rem !important;
+}
+
+h5 {
+  font-size: 1rem !important;
+}
+
+.pagination li a,
+.pagination li span {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  color: #333;
+  text-decoration: none;
+}
+
+.pagination li.active span {
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+
+.pagination li.disabled span {
+  color: #999;
+}
+
+.button-size {
+  font-size: 16px;
+}
+.filter-body {
+  display: none;
+}
+.btn-filter {
+  background-color: #d3d3de !important;
+}
+
+.btn-filter:hover {
+  color: #fff;
+  background-color: #d3d3de;
+  border-color: #d3d3de;
+  box-shadow: none;
+}
+.btn {
+  font-size: 12px !important;
+  padding: 7px 30px !important;
+}
+
+.btn-cancel {
+  background-color: #f1efef !important;
+}
+
+.btn-sidebar {
+  border-radius: 0 4px 4px 0;
+}
+
+.card {
+  margin: 0px 10px 18px 8px;
+  border-radius: 3px;
+}
+.detail-label {
+  font-size: 12px;
+  margin: 13px 0px;
+}
+
+.detail-text {
+  font-size: 12px;
+  margin: 13px 0px;
+  font-weight: bolder !important;
+}
+.password.input-group-append {
+  height: calc(1.7125rem + 5px) !important
+}
+
+.login-password.input-group-append {
+  height: calc(1.5em + 1rem + 2px) !important
+}
+
+.logout-btn {
+  color: #c2c7d0;
+}
+
+.logout-btn:hover {
+  color: #fff !important;
+}
+
+[class*=sidebar-dark-] {
+  background-color: #141655;
+}
+
+.nav-icon {
+  font-size: 1rem !important;
+  margin-left: -0.5rem !important;
+}
+
+#branch-security-stock-list {
+  table-layout: fixed;
+  width: 110%;
+}
+.icon-edit {
+  padding: 8px 10px !important;
+  background: linear-gradient(rgba(104, 104, 172, 0.2), rgba(104, 104, 172, 0.2)) !important;
+  color: #6868AC !important;
+}
+
+.icon-destroy {
+  padding: 8px 10px !important;
+  background-color: rgba(231, 76, 60, 0.2) !important;
+  color: #e74c3c !important;
+}

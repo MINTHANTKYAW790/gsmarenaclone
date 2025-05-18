@@ -1,0 +1,52 @@
+$theme-colors: (
+    primary: #6868AC,
+);
+@import 'bootstrap/scss/bootstrap.scss';
+@import 'admin-lte/plugins/fontawesome-free/css/all.min.css';
+
+
+.icon-primary {
+    color: #6868AC;
+}
+
+.icon-primary:hover {
+    color: #6868AC;
+    text-decoration: none;
+}
+
+.icon-warning {
+    color: $warning;
+}
+
+.icon-warning:hover {
+    color: $warning;
+    text-decoration: none;
+}
+
+.icon-danger {
+    color: $danger;
+}
+
+.icon-danger:hover {
+    color: $danger;
+    text-decoration: none;
+}
+
+.icon-success {
+    color: $success;
+}
+
+.icon-success:hover {
+    color: $success;
+    text-decoration: none;
+}
+
+@import 'admin-lte/dist/css/adminlte.min.css';
+@import "datatables.net-bs4/css/dataTables.bootstrap4.min.css";
+@import "datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css";
+@import 'datatables.net-select-bs4/css/select.bootstrap4.css';
+@import 'datatables.net-fixedcolumns-bs4/css/fixedColumns.bootstrap4.min.css';
+@import 'toastr';
+@import 'virtual-select-plugin/dist/virtual-select.min.css';
+@import './custom.css';
+@import './sweetalert2.min.css';
