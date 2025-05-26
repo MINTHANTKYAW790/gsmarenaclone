@@ -27,7 +27,7 @@
 <div class="container-fluid">
     <div class="card">
         <div class="card-body p-3">
-            <form action="{{ route('device.update',['device' => $device]) }}" method="POST">
+            <form action="{{ route('device.update',['device' => $device]) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="form-group row col-md-7">
@@ -70,20 +70,15 @@
                         @enderror
                     </div>
                 </div>
-                @if ($device->image_url)
-                <div class="mb-2">
-                    <img src="{{ $device->image_url }}" alt="Current Logo" style="max-height: 100px;">
-                </div>
-                @endif
                 <div class="form-group row col-md-7">
-                    <label for="image_url" class="col-sm-4 col-form-label">Logo Image <span class="text-danger">*</span></label>
+                    <label for="image_url" class="col-sm-4">image_url<span class="text-danger">*</span></label>
                     <div class="col-sm-8">
-                        <input id="image_url" type="file" class="form-control form-control-sm @error('image_url') is-invalid @enderror" accept="image/*" name="image_url" value="{{ old('image_url') }}">
-                        @error('image_url')
-                        <span class="invalid-feedback">
-                            {{ $message }}
-                        </span>
-                        @enderror
+                        <input type="file" id="image_url" hidden name="image_url" accept="image/*">
+                        <div class="align-items-center bg-light d-flex justify-content-center rounded w-100 img-container" style="height: 250px;">
+                            <img src="{{ asset($device->image_url) }}" alt="Device Image" class="img-fluid w-100 h-100 default">
+                            <img alt="Default Image" class="img-fluid d-none w-100 h-100 rounded">
+                        </div>
+                        @error('image_url') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>
                 </div>
                 <div class="form-group row col-md-7">

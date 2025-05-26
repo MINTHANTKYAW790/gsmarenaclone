@@ -20,8 +20,8 @@ class Spec extends Model
         return $this->belongsTo(Device::class);
     }
 
-    public function specCategory()
+    public function category()
     {
-        return $this->belongsTo(SpecCategory::class);
+    return $this->belongsTo(SpecCategory::class, 'spec_category_id');
     }
 }

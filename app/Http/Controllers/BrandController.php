@@ -25,6 +25,10 @@ class BrandController extends Controller
             $brand = $this->brandRepository->getDatatableQuery();
             return Datatables::of($brand)
                 ->addIndexColumn()
+            ->addColumn('logo_url', function ($brand) {
+                $imageUrl = asset('images/' . basename($brand->logo_url)); // or storage path if using Storage
+                return '<img src="' . $imageUrl . '" alt="Logo" height="40">';
+            })
                 ->addColumn('action',function ($brand) {
                         $btn = '<div class="row m-sm-n1 justify-content-center">';
                             $btn = $btn . '<div class="mx-2 button-box text-center">
@@ -47,7 +51,7 @@ class BrandController extends Controller
                         return $btn;
                     }
                 )
-                ->rawColumns(['action'])
+                ->rawColumns(['logo_url', 'action'])
                 ->make(true);
         }
         return view('brand.index');
@@ -60,7 +64,12 @@ class BrandController extends Controller
 
     public function store(Request $request)
     {
+        info($request);
         $data = $request->all();
+        $imageFileName = auth()->id() . '_' . time() . '.' . $request->file('logo_url')->extension();
+        $data['logo_url'] = $request->file('logo_url')->move(public_path('images'), $imageFileName);
+        info("data");
+        info($data);
         $this->brandRepository->create($data);
         return redirect()->route('brand.index')->with('success', 'Brand created successfully.');
     }
@@ -72,11 +81,20 @@ class BrandController extends Controller
         ]);
     }
 
-    public function update(Request $request, Brand $brand)
+   public function update(Request $request, Brand $brand)
     {
         info($brand);
         info("inside of update");
+        info($request);
+        $imageFileName = $brand->logo_url;
+        if ($request->hasFile('logo_url')) {
+            $imageFileName = auth()->id() . '_' . time() . '.' . $request->file('logo_url')->extension();
+            $request->file('logo_url')->move(public_path('images'), $imageFileName);
+        }
+        info($imageFileName);
         $data = $request->all();
+        $data['logo_url'] = $imageFileName;
+        info($data);
         $this->brandRepository->update($data, $brand->id);
         return redirect()->route('brand.index')->with('success', 'Brand updated successfully.');
     }

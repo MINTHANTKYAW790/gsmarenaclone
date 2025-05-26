@@ -31,7 +31,7 @@
 
         <li class="nav-item">
             @if (auth('web')->check())
-            <i class="fas fa-user-circle"></i> {{ auth('web')->user()->fullname }} | {{ auth('web')->user()->username }}
+            <i class="fas fa-user-circle"></i> {{ auth('web')->user()->name }} 
             @else
             <i class="fas fa-user-circle"></i> Guest
             @endif

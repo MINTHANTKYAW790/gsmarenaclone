@@ -39,15 +39,15 @@
                         @enderror
                     </div>
                 </div>
-                <div class="form-group row col-md-7">
+                <div class="form-group row col-md-7" >
                     <label for="logo_url" class="col-sm-4 col-form-label">Logo Image <span class="text-danger">*</span></label>
                     <div class="col-sm-8">
-                        <input id="logo_url" type="file" class="form-control form-control-sm @error('logo_url') is-invalid @enderror" accept="image/*" name="logo_url" value="{{ old('logo_url') }}">
-                        @error('logo_url')
-                        <span class="invalid-feedback">
-                            {{ $message }}
-                        </span>
-                        @enderror
+                        <input type="file" id="logo_url" name="logo_url" hidden accept="image/*">
+                        <div class="align-items-center bg-light d-flex justify-content-center rounded w-100 img-container" style="height: 250px;">
+                            <img src="{{ asset('images/default.png') }}" alt="Default Image" class="img-fluid default">
+                            <img alt="Preview Image" class="img-fluid d-none w-100 h-100 rounded">
+                        </div>
+                        @error('logo_url') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>
                 </div>
                 <div class="form-group row col-md-7">

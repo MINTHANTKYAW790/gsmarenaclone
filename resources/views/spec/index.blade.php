@@ -27,14 +27,12 @@
         <div class="card-body">
             <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
                 <input type="hidden" value="{{ route('spec.index') }}" id="index_route_route">
-                <table id="brand_list" class="table">
+                <table id="spec_list" class="table">
                     <thead>
                         <tr>
                             <th>#</th>
+                            <th>Brand</th>
                             <th>Device</th>
-                            <th>Category</th>
-                            <th>Key</th>
-                            <th>Value</th>
                             <th class="text-center">Action</th>
                         </tr>
                     </thead>

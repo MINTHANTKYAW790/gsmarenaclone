@@ -14,4 +14,5 @@ $('[data-toggle="popover"]').popover();
 import './app/datatables';
 import './app/common';
 import './sweetalert2.min';
+import '../css/app.scss';
 

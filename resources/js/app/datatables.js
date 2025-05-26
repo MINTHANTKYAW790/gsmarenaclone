@@ -55,34 +55,32 @@ $(function () {
     });
 
     var spec_list = $("#spec_list").DataTable({
-        processing: true,
-        serverSide: true,
-        ajax: {
-            url: $("#index_route_route").val(),
-            data: function (data) { },
+    processing: true,
+    serverSide: true,
+    ajax: {
+        url: $("#index_route_route").val(),
+        data: function (data) {},
+    },
+    columns: [
+        {
+            data: "DT_RowIndex",
+            name: "DT_RowIndex",
+            orderable: false,
+            searchable: false,
+            class: "text-left"
         },
-        columns: [
-            {
-                data: "DT_RowIndex",
-                name: "DT_RowIndex",
-                orderable: false,
-                searchable: false,
-                class: "text-left"
-            },
-            { data: "device_id", name: "device_id" },
-            { data: "spec_category_id", name: "spec_category_id" },
-            { data: "key", name: "key" },
-            { data: "value", name: "value" },
-            {
-                data: "action",
-                name: "action",
-                orderable: false,
-                searchable: false,
-                class: "td-actions",
-            },
-        ],
-        scrollX: true,
-    });
+        { data: "brand_name", name: "brand_name" },
+        { data: "device_name", name: "device_name" },
+        {
+            data: "action",
+            name: "action",
+            orderable: false,
+            searchable: false,
+            class: "text-center",
+        },
+    ],
+    scrollX: true,
+});
 
     var device_list = $("#device_list").DataTable({
         processing: true,

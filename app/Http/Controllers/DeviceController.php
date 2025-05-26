@@ -32,15 +32,21 @@ class DeviceController extends Controller
                 ->addColumn('brand_name', function ($device) {
                     return $device->brand->name ?? '';
                 })
-                ->addColumn('action',function ($device) {
+                ->addColumn('image_url', function ($brand) {
+                    $imageUrl = asset('images/' . basename($brand->image_url)); // or storage path if using Storage
+                    return '<img src="' . $imageUrl . '" alt="Logo" height="40">';
+                })
+                ->addColumn(
+                    'action',
+                    function ($device) {
                         $btn = '<div class="row m-sm-n1 justify-content-center">';
-                            $btn = $btn . '<div class="mx-2 button-box text-center">
+                        $btn = $btn . '<div class="mx-2 button-box text-center">
                                             <a rel="tooltip" class="button-size icon-primary"
                                                 href="' . route('device.edit', [$device->id]) . '" data-original-title="" title="Edit">
                                                 <i class="fas fa-pencil-alt"></i>
                                             </a>
                                         </div>';
-                            $btn = $btn .  '<div class="mx-2 button-box text-center">
+                        $btn = $btn .  '<div class="mx-2 button-box text-center">
                              <form action="' . route('device.destroy', $device->id) . '" method="POST" id="del-role-' . $device->id . '" class="d-inline">
                                 <input type="hidden" name="_token" value="' . csrf_token() . '">
                                 <input type="hidden" name="_method" value="DELETE">
@@ -54,7 +60,7 @@ class DeviceController extends Controller
                         return $btn;
                     }
                 )
-                ->rawColumns(['action'])
+                ->rawColumns(['image_url', 'action'])
                 ->make(true);
         }
         return view('device.index');
@@ -63,12 +69,17 @@ class DeviceController extends Controller
     public function create()
     {
         $brands = $this->brandRepository->getDatatableQuery();
-        return view('device.create',compact('brands'));
+        return view('device.create', compact('brands'));
     }
 
     public function store(Request $request)
     {
+        info($request);
         $data = $request->all();
+        $imageFileName = auth()->id() . '_' . time() . '.' . $request->file('image_url')->extension();
+        $data['image_url'] = $request->file('image_url')->move(public_path('images'), $imageFileName);
+        info("data");
+        info($data);
         $this->deviceRepository->create($data);
         return redirect()->route('device.index')->with('success', 'Device created successfully.');
     }
@@ -84,7 +95,16 @@ class DeviceController extends Controller
     {
         info($device);
         info("inside of update");
+        info($request);
+        $imageFileName = $device->image_url;
+        if ($request->hasFile('image_url')) {
+            $imageFileName = auth()->id() . '_' . time() . '.' . $request->file('image_url')->extension();
+            $request->file('image_url')->move(public_path('images'), $imageFileName);
+        }
+        info($imageFileName);
         $data = $request->all();
+        $data['image_url'] = $imageFileName;
+        info($data);
         $this->deviceRepository->update($data, $device->id);
         return redirect()->route('device.index')->with('success', 'Device updated successfully.');
     }

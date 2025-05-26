@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Device;
 use App\Models\Spec;
+use App\Models\SpecCategory;
 use App\Repositories\DeviceRepository;
 use App\Repositories\SpecCategoryRepository;
 use App\Repositories\SpecRepository;
@@ -33,6 +35,8 @@ class SpecController extends Controller
             $spec = $this->specRepository->getDatatableQuery();
             return Datatables::of($spec)
                 ->addIndexColumn()
+                ->addColumn('device_name', fn($row) => $row->name)
+                ->addColumn('brand_name', fn($row) => $row->brand->name)
                 ->addColumn(
                     'action',
                     function ($spec) {
@@ -53,6 +57,11 @@ class SpecController extends Controller
                                             </a>
                                 </button>
                             </form></div>';
+                        $btn .= '<div class="mx-2 button-box text-center">
+                            <a href="' . route('spec.show', $spec->specs->first()?->id ?? 0) . '" class="button-size icon-primary" title="View">
+                                <i class="fas fa-eye"></i>
+                            </a>
+                        </div>';
                         $btn = $btn . '</div>';
                         return $btn;
                     }
@@ -67,30 +76,86 @@ class SpecController extends Controller
     {
         $devices = $this->deviceRepository->getAll();
         $spec_categories = $this->specCategoryRepository->getAll();
-        return view('spec.create',compact('devices', 'spec_categories'));
+        return view('spec.create', compact('devices', 'spec_categories'));
     }
 
     public function store(Request $request)
     {
-        $data = $request->all();
-        $this->specRepository->create($data);
+        $specs = $request->input('specs'); 
+
+        foreach ($specs as $categoryId => $entries) {
+            foreach ($entries as $entry) {
+                $key = $entry['key'] ?? null;
+                $value = $entry['value'] ?? null;
+
+                if (!empty($key) && !empty($value)) {
+                    Spec::create([
+                        'device_id' => $request->device_id,
+                        'spec_category_id' => $categoryId,
+                        'key' => $key,
+                        'value' => $value,
+                    ]);
+                }
+            }
+        }
         return redirect()->route('spec.index')->with('success', 'Spec created successfully.');
     }
 
-    public function edit(Spec $spec)
+    public function edit($deviceId)
     {
-        return view('spec.edit', [
-            'spec' => $spec,
-        ]);
+        $device = Device::with(['specs.category'])->findOrFail($deviceId);
+        $spec_categories = SpecCategory::all();
+        return view('spec.edit', compact('device', 'spec_categories'));
     }
 
-    public function update(Request $request, Spec $spec)
+    public function update(Request $request, $deviceId)
     {
-        info($spec);
-        info("inside of update");
-        $data = $request->all();
-        $this->specRepository->update($data, $spec->id);
-        return redirect()->route('spec.index')->with('success', 'Spec updated successfully.');
+        $device = Device::findOrFail($deviceId);
+        $submittedSpecIds = [];
+        foreach ($request->specs as $category_id => $specGroup) {
+            foreach ($specGroup as $spec) {
+
+                if (!empty($spec['id'])) {
+                    $submittedSpecIds[] = $spec['id'];
+
+                    Spec::where('id', $spec['id'])->update([
+                        'key' => $spec['key'],
+                        'value' => $spec['value'],
+                    ]);
+                } else {
+                    info("in the else");
+                    $exists = Spec::where('device_id', $deviceId)
+                        ->where('spec_category_id', $category_id)
+                        ->where('key', $spec['key'])
+                        ->exists();
+
+                    if ($exists) {
+                        return redirect()->back()
+                            ->withInput()
+                            ->with('error', "Spec with key '{$spec['key']}' already exists.");
+                    }
+
+                    $newSpec = Spec::create([
+                        'device_id' => $deviceId,
+                        'spec_category_id' => $category_id,
+                        'key' => $spec['key'],
+                        'value' => $spec['value'],
+                    ]);
+                    $submittedSpecIds[] = $newSpec->id;
+                }
+            }
+        }
+
+        Spec::where('device_id', $deviceId)
+            ->whereNotIn('id', $submittedSpecIds)
+            ->delete();
+        return redirect()->route('spec.index')->with('success', 'Specs updated successfully.');
+    }
+
+    public function show(Spec $spec)
+    {
+        $spec->load('device.brand', 'device.specs.category');
+        return view('spec.show', compact('spec'));
     }
 
     public function destroy(Spec $spec)

@@ -30,13 +30,15 @@
             <form action="{{ route('device.store') }}" method="POST" class="row" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group row col-md-7">
-                    <label for="brand_id" class="col-sm-4 col-form-label">Website Url <span class="text-danger">*</span></label>
+                    <label for="brand_id" class="col-sm-4 col-form-label">Select Brand</label>
                     <div class="col-sm-8">
-                        <input type="text" id="brand_id" class="form-control form-control-sm @error('brand_id') is-invalid @enderror"
-                            name="brand_id">
-                        @error('brand_id')
-                        <span class="text-danger">{{ $message }}</span>
-                        @enderror
+                        <select name="brand_id" class="form-control form-control-sm @error('brand_id') is-invalid @enderror" id="brand_id">
+                            <option value="">-- Select Brand --</option>
+                            @foreach ($brands as $brand)
+                            <option value="{{ $brand->id }}">{{ $brand->name }}</option>
+                            @endforeach
+                        </select>
+                        @error('brand_id') <small class="text-danger">{{ $message }}</small> @enderror
                     </div>
                 </div>
                 <div class="form-group row col-md-7">
@@ -50,17 +52,16 @@
                     </div>
                 </div>
                 <div class="form-group row col-md-7">
-                    <label for="release_date" class="col-sm-4 col-form-label">Website Url <span class="text-danger">*</span></label>
+                    <label for="release_date" class="col-sm-4 col-form-label">Release Date<span class="text-danger">*</span></label>
                     <div class="col-sm-8">
-                        <input type="text" id="release_date" class="form-control form-control-sm @error('release_date') is-invalid @enderror"
-                            name="release_date">
+                        <input type="date" id="release_date" class="form-control form-control-sm @error('release_date') is-invalid @enderror" name="release_date">
                         @error('release_date')
                         <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
                 </div>
                 <div class="form-group row col-md-7">
-                    <label for="price" class="col-sm-4 col-form-label">Website Url <span class="text-danger">*</span></label>
+                    <label for="price" class="col-sm-4 col-form-label">Price<span class="text-danger">*</span></label>
                     <div class="col-sm-8">
                         <input type="text" id="price" class="form-control form-control-sm @error('price') is-invalid @enderror"
                             name="price">
@@ -69,19 +70,19 @@
                         @enderror
                     </div>
                 </div>
-                <div class="form-group row col-md-7">
+                <div class="form-group row col-md-7" >
                     <label for="image_url" class="col-sm-4 col-form-label">Logo Image <span class="text-danger">*</span></label>
                     <div class="col-sm-8">
-                        <input id="image_url" type="file" class="form-control form-control-sm @error('image_url') is-invalid @enderror" accept="image/*" name="image_url" value="{{ old('image_url') }}">
-                        @error('image_url')
-                        <span class="invalid-feedback">
-                            {{ $message }}
-                        </span>
-                        @enderror
+                        <input type="file" id="image_url" name="image_url" hidden accept="image/*">
+                        <div class="align-items-center bg-light d-flex justify-content-center rounded w-100 img-container" style="height: 250px;">
+                            <img src="{{ asset('images/default.png') }}" alt="Default Image" class="img-fluid default">
+                            <img alt="Preview Image" class="img-fluid d-none w-100 h-100 rounded">
+                        </div>
+                        @error('image_url') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>
                 </div>
                 <div class="form-group row col-md-7">
-                    <label for="os" class="col-sm-4 col-form-label">Website Url <span class="text-danger">*</span></label>
+                    <label for="os" class="col-sm-4 col-form-label">Operation System<span class="text-danger">*</span></label>
                     <div class="col-sm-8">
                         <input type="text" id="os" class="form-control form-control-sm @error('os') is-invalid @enderror"
                             name="os">
@@ -91,10 +92,14 @@
                     </div>
                 </div>
                 <div class="form-group row col-md-7">
-                    <label for="device_type" class="col-sm-4 col-form-label">Website Url <span class="text-danger">*</span></label>
+                    <label for="device_type" class="col-sm-4 col-form-label">Device Type <span class="text-danger">*</span></label>
                     <div class="col-sm-8">
-                        <input type="text" id="device_type" class="form-control form-control-sm @error('device_type') is-invalid @enderror"
-                            name="device_type">
+                        <select id="device_type" name="device_type" class="form-control form-control-sm @error('device_type') is-invalid @enderror">
+                            <option value="">-- Select Device Type --</option>
+                            <option value="phone" {{ old('device_type') == 'phone' ? 'selected' : '' }}>Phone</option>
+                            <option value="tablet" {{ old('device_type') == 'tablet' ? 'selected' : '' }}>Tablet</option>
+                            <option value="smartwatch" {{ old('device_type') == 'smartwatch' ? 'selected' : '' }}>Smartwatch</option>
+                        </select>
                         @error('device_type')
                         <span class="text-danger">{{ $message }}</span>
                         @enderror
@@ -110,5 +115,15 @@
         </div>
     </div>
 </div>
+<script>
+    $(function() {
+        $("#release_date").datepicker({
+            dateFormat: "yy-mm-dd", 
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "2000:2030"
+        });
+    });
+</script>
 
 @endsection

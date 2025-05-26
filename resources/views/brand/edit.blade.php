@@ -27,7 +27,7 @@
 <div class="container-fluid">
     <div class="card">
         <div class="card-body p-3">
-            <form action="{{ route('brand.update',['brand' => $brand]) }}" method="POST">
+            <form action="{{ route('brand.update',['brand' => $brand]) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="form-group row col-md-7">
@@ -40,21 +40,15 @@
                         @enderror
                     </div>
                 </div>
-                @if ($brand->logo_url)
-                <div class="mb-2">
-                    <img src="{{ $brand->logo_url }}" alt="Current Logo" style="max-height: 100px;">
-                </div>
-                @endif
-
                 <div class="form-group row col-md-7">
-                    <label for="logo_url" class="col-sm-4 col-form-label">Logo Image <span class="text-danger">*</span></label>
+                    <label for="logo_url" class="col-sm-4">logo_url<span class="text-danger">*</span></label>
                     <div class="col-sm-8">
-                        <input id="logo_url" type="file" class="form-control form-control-sm @error('logo_url') is-invalid @enderror" accept="image/*" name="logo_url" value="{{ old('logo_url') }}">
-                        @error('logo_url')
-                        <span class="invalid-feedback">
-                            {{ $message }}
-                        </span>
-                        @enderror
+                        <input type="file" id="logo_url" hidden name="logo_url" accept="image/*">
+                        <div class="align-items-center bg-light d-flex justify-content-center rounded w-100 img-container" style="height: 250px;">
+                            <img src="{{ $brand->logo_url }}" alt="Default Image" class="img-fluid w-100 h-100 default">
+                            <img alt="Default Image" class="img-fluid d-none w-100 h-100 rounded">
+                        </div>
+                        @error('logo_url') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>
                 </div>
                 <div class="form-group row col-md-7">

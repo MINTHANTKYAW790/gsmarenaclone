@@ -17,3 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/brand/{id}/devices', function ($id) {
+    return \App\Models\Device::where('brand_id', $id)->get();
+});

@@ -3,6 +3,7 @@
 
 namespace App\Repositories;
 
+use App\Models\Device;
 use App\Models\Spec;
 use Exception;
 use Illuminate\Support\Facades\DB;
@@ -43,8 +44,8 @@ class SpecRepository
      */
     public function getDatatableQuery()
     {
-        $brands =  $this->spec->get();
-        return $brands;
+        $devices = Device::with(['brand', 'specs.category'])->get(); // Eager load for display
+        return $devices;
     }
 
     /**
