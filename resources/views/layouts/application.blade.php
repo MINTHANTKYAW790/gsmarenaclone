@@ -75,10 +75,6 @@
             color: #003684 !important;
         }
 
-        .tableContainer {
-            background-color: green;
-            padding: 2%;
-        }
 
         .comparison-table {
             width: 100%;
