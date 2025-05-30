@@ -7,6 +7,7 @@ use App\Http\Controllers\SpecController;
 use App\Http\Controllers\SpecCategoryController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\CompareController;
+use App\Http\Controllers\ReviewController;
 
 Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
 Route::post('/register', [AuthController::class, 'register']);
@@ -29,7 +30,5 @@ Route::middleware('auth')->group(function () {
     Route::resource('device', DeviceController::class);
     Route::resource('spec', SpecController::class);
     Route::resource('category', SpecCategoryController::class);
+    Route::resource('review', ReviewController::class);
 });
-
-
-

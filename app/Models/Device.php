@@ -16,7 +16,7 @@ class Device extends Model
         'image_url',
         'os',
         'device_type',
-        ];
+    ];
 
     public function brand()
     {
@@ -35,5 +35,10 @@ class Device extends Model
             ->where('key', $key)
             ->first()
             ->value ?? '—';
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
     }
 }

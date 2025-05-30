@@ -57,6 +57,16 @@
             </ul>
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item">
+                    <a href="{{ route('review.index') }}" class="nav-link @if (Request::is('review*')) active @endif">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>
+                            Revieww
+                        </p>
+                    </a>
+                </li>
+            </ul>
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <li class="nav-item">
                     <form method="POST" action="{{ route('logout') }}" class="nav-link">
                         @csrf
                         <a hrefs="#" class="logout-btn" onclick="event.preventDefault(); this.closest('form').submit();" style="cursor: pointer;">

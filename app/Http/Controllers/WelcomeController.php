@@ -15,8 +15,7 @@ class WelcomeController extends Controller
     public function index()
     {
         $brands = Brand::all();
-        $devices = Device::all();
-        // $books = Books::latest()->paginate(5);
+        $devices = Device::with(['specs.category'])->get();
         return view('welcome', compact('devices', 'brands'));
     }
 
