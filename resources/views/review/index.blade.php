@@ -27,13 +27,16 @@
         <div class="card-body">
             <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
                 <input type="hidden" value="{{ route('review.index') }}" id="index_route_route">
-                <table id="brand_list" class="table">
+                <table id="review_list" class="table">
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Logo</th>
-                            <th>Name</th>
-                            <th>Website Url</th>
+                            <th>Device</th>
+                            <th>User Name</th>
+                            <th>Heading</th>
+                            <th>Image 1</th>
+                            <th>Image 2</th>
+                            <th>Rating</th>
                             <th class="text-center">Action</th>
                         </tr>
                     </thead>

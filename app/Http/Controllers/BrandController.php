@@ -25,19 +25,21 @@ class BrandController extends Controller
             $brand = $this->brandRepository->getDatatableQuery();
             return Datatables::of($brand)
                 ->addIndexColumn()
-            ->addColumn('logo_url', function ($brand) {
-                $imageUrl = asset('images/' . basename($brand->logo_url)); // or storage path if using Storage
-                return '<img src="' . $imageUrl . '" alt="Logo" height="40">';
-            })
-                ->addColumn('action',function ($brand) {
+                ->addColumn('logo_url', function ($brand) {
+                    $imageUrl = asset('images/' . basename($brand->logo_url)); // or storage path if using Storage
+                    return '<img src="' . $imageUrl . '" alt="Logo" height="40">';
+                })
+                ->addColumn(
+                    'action',
+                    function ($brand) {
                         $btn = '<div class="row m-sm-n1 justify-content-center">';
-                            $btn = $btn . '<div class="mx-2 button-box text-center">
+                        $btn = $btn . '<div class="mx-2 button-box text-center">
                                             <a rel="tooltip" class="button-size icon-primary"
                                                 href="' . route('brand.edit', [$brand->id]) . '" data-original-title="" title="Edit">
                                                 <i class="fas fa-pencil-alt"></i>
                                             </a>
                                         </div>';
-                            $btn = $btn .  '<div class="mx-2 button-box text-center">
+                        $btn = $btn .  '<div class="mx-2 button-box text-center">
                              <form action="' . route('brand.destroy', $brand->id) . '" method="POST" id="del-role-' . $brand->id . '" class="d-inline">
                                 <input type="hidden" name="_token" value="' . csrf_token() . '">
                                 <input type="hidden" name="_method" value="DELETE">
@@ -81,7 +83,7 @@ class BrandController extends Controller
         ]);
     }
 
-   public function update(Request $request, Brand $brand)
+    public function update(Request $request, Brand $brand)
     {
         info($brand);
         info("inside of update");

@@ -13,7 +13,12 @@ Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('regi
 Route::post('/register', [AuthController::class, 'register']);
 // Public routes
 Route::get('/filter', [WelcomeController::class, 'index'])->name('welcome');
+Route::get('/reviews', [WelcomeController::class, 'reviews'])->name('reviews');
+Route::get('/filter/device/{device}', [WelcomeController::class, 'showDevices'])->name('devices.show');
 Route::get('/branded/{id}', [WelcomeController::class, 'filterByBrand'])->name('branded.filter');
+
+Route::get('/filter/review/{id}', [WelcomeController::class, 'deviceReview'])->name('devices.reviews');
+
 
 Route::get('/', [CompareController::class, 'index'])->name('compare.index');
 Route::get('/compare/load-device/{device}', [CompareController::class, 'loadDevice'])->name('compare.loadDevice');

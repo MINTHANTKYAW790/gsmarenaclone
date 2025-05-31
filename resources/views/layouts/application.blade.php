@@ -83,9 +83,9 @@
             padding: 1% 2%;
         }
 
-        body {
+        /* body {
             background-color: gray !important
-        }
+        } */
 
         .categoryName {
             color: #0091ea !important;
@@ -134,7 +134,7 @@
         .phoneFinder {
             background-color: white;
             width: 20%;
-            height: 80%;
+            height: 100% !important;
         }
 
         .phoneFinderProducts {
@@ -154,10 +154,11 @@
     </style>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
         integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 </head>
 
-<body>
+<body class="bg-light">
     <div class="wrapper">
 
         <!-- Header -->
@@ -167,44 +168,35 @@
                 <h3>C2 Mobile</h3>
             </div>
             <div class="header-right">
-                <a href="#">Home</a>
-                <a href="#">News</a>
-                <a href="#">Phone Finder</a>
-                <a href="#">Reviews</a>
-                <a href="#">About us</a>
+                <a href="{{ route('compare.index') }}">Home</a>
+                <a href="{{ route('welcome') }}">Phone Finder</a>
+                <a href="{{ route('reviews') }}">Reviews</a>
+                <!-- <a href="{{ route('reviews') }}">About us</a> -->
             </div>
         </div>
 
-        <!-- Main Content -->
         <div class="content">
             @yield('content')
         </div>
 
-        <!-- Footer -->
-        <!-- Footer -->
         <footer class="footer">
-            <div
-                style="display: flex; justify-content: space-between; width: 100%; flex-wrap: wrap; padding: 10px 15px; background-color: #222; color: white;">
-                <!-- Left: Logo and Tagline -->
-                <div style="flex: 1; min-width: 200px;">
-                    <div style="font-weight: bold;">C2 Mobile</div>
+            <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; flex-wrap: wrap; padding: 10px 15px; background-color: #222; color: white;">
+                <div style="flex: 1; min-width: 200px; text-align: left;">
+                    <div style="font-weight: bold; font-size: 18px;">C2 Mobile</div>
                     <div style="font-size: 14px; color: #ccc;">Technical support</div>
                 </div>
 
-                <!-- Center: Navigation Links -->
-                <div style="flex: 1; text-align: center; min-width: 200px;">
-                    <a href="#" style="color: #ccc; margin: 0 10px; text-decoration: none;">Home</a>
-                    <a href="#" style="color: #ccc; margin: 0 10px; text-decoration: none;">News</a>
-                    <a href="#" style="color: #ccc; margin: 0 10px; text-decoration: none;">Reviews</a>
-                    <a href="#" style="color: #ccc; margin: 0 10px; text-decoration: none;">Compare</a>
-                </div>
-
-                <!-- Right: Copyright and Legal -->
-                <div style="flex: 1; text-align: right; min-width: 200px;">
-                    <div style="color: #ccc;">copyright © 2025 - <a href="#"
-                            style="color: #ccc; text-decoration: none;">websitelink.com</a></div>
-                    <a href="#" style="color: #ccc; margin-right: 10px; text-decoration: none;">Privacy</a>
-                    <a href="#" style="color: #ccc; text-decoration: none;">Terms of use</a>
+                <div style="flex: 2; min-width: 250px; display: flex; flex-direction: column; align-items: flex-end;">
+                    <div style="display: flex; gap: 20px; margin-bottom: 5px;">
+                        <a href="{{ route('compare.index') }}" style="color: #ccc; text-decoration: none; font-weight: 500;">Home</a>
+                        <a href="{{ route('reviews') }}" style="color: #ccc; text-decoration: none; font-weight: 500;">Reviews</a>
+                        <a href="#" style="color: #ccc; text-decoration: none; font-weight: 500;">Privacy</a>
+                        <a href="#" style="color: #ccc; text-decoration: none; font-weight: 500;">Terms of use</a>
+                    </div>
+                    <div style="color: #aaa; font-size: 13px;" class="mt-2">
+                        copyright © 2025 - 
+                        <a href="#" style="color: #aaa; text-decoration: underline;">websitelink.com</a>
+                    </div>
                 </div>
             </div>
         </footer>
