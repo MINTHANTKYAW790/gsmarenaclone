@@ -87,15 +87,15 @@ class ReviewController extends Controller
 
     public function store(Request $request)
     {
-        info($request);
         $data = $request->all();
         $image1FileName = auth()->id() . '_' . time() . '.' . $request->file('image_1')->extension();
         $data['image_1'] = $request->file('image_1')->move(public_path('images'), $image1FileName);
 
         $image2FileName = auth()->id() . '_' . time() . '.' . $request->file('image_2')->extension();
         $data['image_2'] = $request->file('image_2')->move(public_path('images'), $image2FileName);
-        info("data");
-        info($data);
+
+        $data['image_1'] = $image1FileName;
+        $data['image_2'] = $image2FileName;
         $data['user_id'] = auth()->id();
         $this->reviewRepository->create($data);
         return redirect()->route('review.index')->with('success', 'Review created successfully.');

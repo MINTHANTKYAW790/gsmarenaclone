@@ -16,6 +16,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role'
     ];
 
     protected $hidden = [
@@ -30,5 +31,10 @@ class User extends Authenticatable
     public function reviews()
     {
         return $this->hasMany(Review::class);
+    }
+
+    public function savedDevices()
+    {
+        return $this->hasMany(SavedDevices::class);
     }
 }

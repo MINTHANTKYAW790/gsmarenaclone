@@ -32,7 +32,16 @@
                 {{-- Display devices for the selected brand --}}
                 @forelse ($devices as $device)
                 <div style="border: 1px solid #ccc; text-align: center;" class="card">
-                    <p class="m-0">{{ $device->name }}</p>
+                    <div style="display: flex; align-items: center; justify-content: space-between;">
+                        <p class="m-0 mb-0" style="flex: 1;">{{ $device->name }}</p>
+                        @if(!in_array($device->id, $savedDeviceIds))
+                        <form method="POST" action="{{ route('savedDevices.store', $device->id) }}" style="margin-left: 10px;">
+                            @csrf
+                            <button type="submit" class="btn btn-outline-primary" style="border: transparent; hover:transparent"><i class="fa fa-bookmark" style="color: black;"></i>
+                            </button>
+                        </form>
+                        @endif
+                    </div>
                     <img src="/images/{{ $device->image_url }}" alt="{{ $device->name }}" style="width: 170px;height: 200px;margin: 0 auto;">
                     <div style="display: flex; align-items: center; justify-content: space-between;" class="mb-2">
                         <div class="phoneDetailLeft" style="width: 65%;">
@@ -54,6 +63,8 @@
                             <a href="{{ route('devices.show', $device->id) }}" class="ml-2" style="white-space: nowrap;"><i class="fa fa-eye" style="color: black;"></i></a>
                             @if ($device->reviews->isNotEmpty())
                             <a href="{{ route('devices.reviews', $device->id) }}" class=" ml-2 btn btn-primary btn-sm px-1 py-0 " style=" white-space: nowrap;">Review</a>
+                            @else
+                            <a href="{{ route('devices.reviews', $device->id) }}" class=" ml-2 btn btn-primary btn-sm px-1 py-0 " style=" white-space: nowrap;">Write</a>
                             @endif
                         </div>
                     </div>

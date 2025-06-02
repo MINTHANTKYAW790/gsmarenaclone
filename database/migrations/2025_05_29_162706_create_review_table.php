@@ -27,7 +27,6 @@ return new class extends Migration
             $table->tinyInteger('rating')->unsigned()->nullable();
             $table->timestamps();
 
-            $table->unique(['device_id', 'user_id']); // 1 review per user per device
         });
     }
 

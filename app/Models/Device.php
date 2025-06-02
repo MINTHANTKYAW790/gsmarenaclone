@@ -41,4 +41,9 @@ class Device extends Model
     {
         return $this->hasMany(Review::class);
     }
+
+    public function savedByUsers()
+    {
+        return $this->belongsToMany(User::class, 'saved_devices')->withTimestamps();
+    }
 }

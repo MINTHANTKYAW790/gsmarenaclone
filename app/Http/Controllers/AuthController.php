@@ -23,7 +23,14 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->route('brand.index'); 
+            $user = Auth::user();
+            if ($user->role === 'admin') {
+                return redirect()->route('brand.index');
+            } else if ($user->role === 'customer') {
+                return redirect('/');
+            } else {
+                return redirect('/');
+            }
         }
 
         return back()->withErrors([
@@ -39,7 +46,6 @@ class AuthController extends Controller
         return redirect('/');
     }
 
-     // ✅ Registration
     public function showRegisterForm()
     {
         return view('auth.register');
@@ -59,8 +65,14 @@ class AuthController extends Controller
             'password' => Hash::make($validated['password']),
         ]);
 
-        Auth::login($user); 
+        Auth::login($user);
 
-        return redirect()->route('brand.index'); 
+        if ($user->role === 'admin') {
+            return redirect()->route('brand.index');
+        } else if ($user->role === 'customer') {
+            return redirect('/');
+        } else {
+            return redirect('/');
+        }
     }
 }

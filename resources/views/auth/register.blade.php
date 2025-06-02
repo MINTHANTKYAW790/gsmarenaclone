@@ -70,6 +70,24 @@
                             </div>
 
                             <div class="row mb-3">
+                                <label class="col-md-4 col-form-label text-md-end">{{ __('Role') }}</label>
+                                <div class="col-md-6 d-flex align-items-center">
+                                    <div class="form-check me-3">
+                                        <input class="form-check-input" type="radio" name="role" id="role_customer" value="customer" {{ old('role', 'customer') == 'customer' ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="role_customer">
+                                            {{ __('Customer') }}
+                                        </label>
+                                    </div>
+                                    <div class="form-check" class="pl-4">
+                                        <input class="form-check-input" type="radio" name="role" id="role_admin" value="admin" {{ old('role') == 'admin' ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="role_admin">
+                                            {{ __('Admin') }}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
                                 <p class="col-md-4 col-form-label text-md-end">Already have an account?
                                     <a href="{{ route('login') }}">Login</a>
                                 </p>

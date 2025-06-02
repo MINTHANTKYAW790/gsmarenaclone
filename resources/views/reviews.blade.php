@@ -2,6 +2,9 @@
 
 @section('content')
 <div class="container py-4">
+    <div class="d-flex justify-content-end mb-3">
+        <a href="{{ route('createReview') }}" class="btn btn-success" style="background-color:#003684">Create Review</a>
+    </div>
     <div class="row">
         @foreach($reviews as $review)
         <div class="col-md-3">

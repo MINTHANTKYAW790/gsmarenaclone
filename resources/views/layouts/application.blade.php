@@ -168,11 +168,26 @@
                 <h3>C2 Mobile</h3>
             </div>
             <div class="header-right">
-                <a href="{{ route('compare.index') }}">Home</a>
-                <a href="{{ route('welcome') }}">Phone Finder</a>
+                <a href="{{ route('welcome') }}">Home</a>
+                <a href="{{ route('compare.index') }}">Compare</a>
                 <a href="{{ route('reviews') }}">Reviews</a>
                 <!-- <a href="{{ route('reviews') }}">About us</a> -->
+                <a href="{{ route('savedlist') }}">Saved</a>
             </div>
+            @if(Auth::check())
+                <div style="margin-left: 20px; font-weight: bold; display: flex; align-items: center;">
+                    {{ Auth::user()->name }}
+                    @if(isset(Auth::user()->role))
+                        <span style=" margin-left: 5px;">({{ Auth::user()->role }})</span>
+                    @endif
+                    <form action="{{ route('logout') }}" method="POST" style="display: inline; margin-left: 15px;">
+                        @csrf
+                        <button type="submit" class="btn btn-danger btn-sm">Logout</button>
+                    </form>
+                </div>
+            @else
+                <a href="{{ route('login') }}" class="btn btn-primary" style="margin-left: 20px;background-color:#003684">Login</a>
+            @endif
         </div>
 
         <div class="content">
@@ -186,15 +201,9 @@
                     <div style="font-size: 14px; color: #ccc;">Technical support</div>
                 </div>
 
-                <div style="flex: 2; min-width: 250px; display: flex; flex-direction: column; align-items: flex-end;">
-                    <div style="display: flex; gap: 20px; margin-bottom: 5px;">
-                        <a href="{{ route('compare.index') }}" style="color: #ccc; text-decoration: none; font-weight: 500;">Home</a>
-                        <a href="{{ route('reviews') }}" style="color: #ccc; text-decoration: none; font-weight: 500;">Reviews</a>
-                        <a href="#" style="color: #ccc; text-decoration: none; font-weight: 500;">Privacy</a>
-                        <a href="#" style="color: #ccc; text-decoration: none; font-weight: 500;">Terms of use</a>
-                    </div>
+                <div style="flex: 2; min-width: 250px; display: flex; flex-direction: column; align-items: flex-end;">                
                     <div style="color: #aaa; font-size: 13px;" class="mt-2">
-                        copyright © 2025 - 
+                        copyright © 2025 -
                         <a href="#" style="color: #aaa; text-decoration: underline;">websitelink.com</a>
                     </div>
                 </div>
