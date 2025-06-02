@@ -6,16 +6,17 @@
         <div class="col-md-12 col-lg-12">
             <div class="card mb-4 shadow-lg border-0">
                 <div class="card-body">
-                    <div class="d-flex align-items-center mb-3">
+                    <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap">
                         <div class="flex-grow-1">
                             <h4 class="card-title mb-1">{{ $review->heading }}</h4>
                             <div class="mb-2" style="font-size: 1.2rem; color: #FFD700;">
                                 {!! str_repeat('★', (int) $review->rating) . str_repeat('☆', 5 - (int) $review->rating) !!}
                             </div>
                         </div>
-                        <span class="badge bg-secondary">
-                            {{ \Carbon\Carbon::parse($review->created_at)->format('M d, Y') }}
-                        </span>
+                        <div class="text-end ms-3" style="min-width: 180px;">
+                            <div class="text-right">{{ \Carbon\Carbon::parse($review->created_at)->format('M d, Y')}}</div>
+                            <div class="text-right">Review By - {{ $review->user->name }}</div>
+                        </div>
                     </div>
                     <div class="row g-3 align-items-center">
                         <div class="col-md-4">

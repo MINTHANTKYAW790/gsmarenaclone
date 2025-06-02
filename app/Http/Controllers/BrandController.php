@@ -66,12 +66,11 @@ class BrandController extends Controller
 
     public function store(Request $request)
     {
-        info($request);
         $data = $request->all();
         $imageFileName = auth()->id() . '_' . time() . '.' . $request->file('logo_url')->extension();
         $data['logo_url'] = $request->file('logo_url')->move(public_path('images'), $imageFileName);
-        info("data");
-        info($data);
+
+        $data['logo_url'] = $imageFileName;
         $this->brandRepository->create($data);
         return redirect()->route('brand.index')->with('success', 'Brand created successfully.');
     }

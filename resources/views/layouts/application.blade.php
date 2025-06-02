@@ -171,22 +171,23 @@
                 <a href="{{ route('welcome') }}">Home</a>
                 <a href="{{ route('compare.index') }}">Compare</a>
                 <a href="{{ route('reviews') }}">Reviews</a>
+                <a href="{{ route('news.index') }}">News</a>
                 <!-- <a href="{{ route('reviews') }}">About us</a> -->
                 <a href="{{ route('savedlist') }}">Saved</a>
             </div>
             @if(Auth::check())
-                <div style="margin-left: 20px; font-weight: bold; display: flex; align-items: center;">
-                    {{ Auth::user()->name }}
-                    @if(isset(Auth::user()->role))
-                        <span style=" margin-left: 5px;">({{ Auth::user()->role }})</span>
-                    @endif
-                    <form action="{{ route('logout') }}" method="POST" style="display: inline; margin-left: 15px;">
-                        @csrf
-                        <button type="submit" class="btn btn-danger btn-sm">Logout</button>
-                    </form>
-                </div>
+            <div style="margin-left: 20px; font-weight: bold; display: flex; align-items: center;">
+                {{ Auth::user()->name }}
+                @if(isset(Auth::user()->role))
+                <span style=" margin-left: 5px;">({{ Auth::user()->role }})</span>
+                @endif
+                <form action="{{ route('logout') }}" method="POST" style="display: inline; margin-left: 15px;">
+                    @csrf
+                    <button type="submit" class="btn btn-danger btn-sm">Logout</button>
+                </form>
+            </div>
             @else
-                <a href="{{ route('login') }}" class="btn btn-primary" style="margin-left: 20px;background-color:#003684">Login</a>
+            <a href="{{ route('login') }}" class="btn btn-primary" style="margin-left: 20px;background-color:#003684">Login</a>
             @endif
         </div>
 
@@ -201,7 +202,7 @@
                     <div style="font-size: 14px; color: #ccc;">Technical support</div>
                 </div>
 
-                <div style="flex: 2; min-width: 250px; display: flex; flex-direction: column; align-items: flex-end;">                
+                <div style="flex: 2; min-width: 250px; display: flex; flex-direction: column; align-items: flex-end;">
                     <div style="color: #aaa; font-size: 13px;" class="mt-2">
                         copyright © 2025 -
                         <a href="#" style="color: #aaa; text-decoration: underline;">websitelink.com</a>

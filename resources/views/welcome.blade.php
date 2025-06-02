@@ -64,7 +64,7 @@
                             @if ($device->reviews->isNotEmpty())
                             <a href="{{ route('devices.reviews', $device->id) }}" class=" ml-2 btn btn-primary btn-sm px-1 py-0 " style=" white-space: nowrap;">Review</a>
                             @else
-                            <a href="{{ route('devices.reviews', $device->id) }}" class=" ml-2 btn btn-primary btn-sm px-1 py-0 " style=" white-space: nowrap;">Write</a>
+                            <a href="{{ route('createReview') }}" class=" ml-2 btn btn-primary btn-sm px-1 py-0 " style=" white-space: nowrap;">Write</a>
                             @endif
                         </div>
                     </div>

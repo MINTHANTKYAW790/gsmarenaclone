@@ -35,8 +35,6 @@ class WelcomeController extends Controller
         $savedDevices = SavedDevices::with('device.brand')
             ->where('user_id', auth()->id())
             ->get();
-        info("in the filterByBrand method");
-        info($savedDevices);
         $savedDeviceIds = $savedDevices->pluck('device_id')->toArray();
 
         return view('welcome', compact('devices', 'brands', 'savedDeviceIds'));
@@ -47,7 +45,11 @@ class WelcomeController extends Controller
         $brands = Brand::all();
         $devices = Device::where('brand_id', $id)->paginate(8);
         $selectedBrand = Brand::findOrFail($id);
-        return view('welcome', compact('brands', 'devices', 'selectedBrand'));
+        $savedDevices = SavedDevices::with('device.brand')
+            ->where('user_id', auth()->id())
+            ->get();
+        $savedDeviceIds = $savedDevices->pluck('device_id')->toArray();
+        return view('welcome', compact('brands', 'devices', 'selectedBrand', 'savedDeviceIds'));
     }
 
     public function deviceReview($id)
