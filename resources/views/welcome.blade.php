@@ -61,11 +61,6 @@
                         </div>
                         <div style="width: 35%;" class="phoneDetailLeft">
                             <a href="{{ route('devices.show', $device->id) }}" class="ml-2" style="white-space: nowrap;"><i class="fa fa-eye" style="color: black;"></i></a>
-                            @if ($device->reviews->isNotEmpty())
-                            <a href="{{ route('devices.reviews', $device->id) }}" class=" ml-2 btn btn-primary btn-sm px-1 py-0 " style=" white-space: nowrap;">Review</a>
-                            @else
-                            <a href="{{ route('createReview') }}" class=" ml-2 btn btn-primary btn-sm px-1 py-0 " style=" white-space: nowrap;">Write</a>
-                            @endif
                         </div>
                     </div>
                 </div>

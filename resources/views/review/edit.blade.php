@@ -7,13 +7,13 @@
 'title' => 'Review',
 'bc_data' => [
 [
-'link' => '',
+'link' => route('review.index'),
 'text' => 'Home',
 'is_active' => false
 ],
 [
-'link' => '',
-'text' => 'List',
+'link' => route('review.index'),
+'text' => 'Review List',
 'is_active' => false
 ],
 [

@@ -164,17 +164,29 @@
         <!-- Header -->
         <div class="header">
             <div class="header-left">
-                {{-- <img src="{{ asset('images/logo.png') }}" alt="C2 Mobile Logo"> --}}
-                <h3>C2 Mobile</h3>
+                <a href="{{ route('welcome') }}" style="text-decoration: none; color: inherit;">
+                    <h3>MobileArena</h3>
+                </a>
             </div>
             <div class="header-right">
-                <a href="{{ route('welcome') }}">Home</a>
                 <a href="{{ route('compare.index') }}">Compare</a>
                 <a href="{{ route('reviews') }}">Reviews</a>
                 <a href="{{ route('news.index') }}">News</a>
                 <!-- <a href="{{ route('reviews') }}">About us</a> -->
-                <a href="{{ route('savedlist') }}">Saved</a>
+                <a href="{{ route('savedlist') }}">
+                    Saved
+                    @if(Auth::check() && isset(Auth::user()->savedDevices))
+                    <sup style="font-size: 12px; color: #003684;">
+                        {{ count(Auth::user()->savedDevices) }}
+                    </sup>
+                    @endif
+                </a>
             </div>
+            <form action="{{ route('search.all') }}" method="GET" class="d-flex">
+                <input type="text" name="query" class="form-control" placeholder="Search devices or brands..." required>
+                <button type="submit" class="btn btn-primary ms-2">Search</button>
+            </form>
+
             @if(Auth::check())
             <div style="margin-left: 20px; font-weight: bold; display: flex; align-items: center;">
                 {{ Auth::user()->name }}
@@ -198,7 +210,11 @@
         <footer class="footer">
             <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; flex-wrap: wrap; padding: 10px 15px; background-color: #222; color: white;">
                 <div style="flex: 1; min-width: 200px; text-align: left;">
-                    <div style="font-weight: bold; font-size: 18px;">C2 Mobile</div>
+                    <div style="font-weight: bold; font-size: 18px;">
+                        <a href="{{ route('welcome') }}" style="text-decoration: none; color: inherit;" class="m-0 p-0">
+                            MobileArena
+                        </a>
+                    </div>
                     <div style="font-size: 14px; color: #ccc;">Technical support</div>
                 </div>
 

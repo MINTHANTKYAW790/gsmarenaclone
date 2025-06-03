@@ -7,13 +7,13 @@
 'title' => 'Spec',
 'bc_data' => [
 [
-'link' => '',
+'link' => route('spec.index'),
 'text' => 'Home',
 'is_active' => false
 ],
 [
-'link' => '',
-'text' => 'List',
+'link' => route('spec.index'),
+'text' => 'Spec List',
 'is_active' => false
 ],
 [

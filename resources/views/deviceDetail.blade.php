@@ -28,12 +28,18 @@
             <div class="deviceDetailContainer my-2">
                 {{-- Device Detail --}}
                 <div class="deviceDetailCard" style="max-width: 700px; margin: 0 auto; border: 1px solid #ccc; border-radius: 10px; padding: 24px; background: #fff;">
-                    <div style="display: flex; align-items: flex-start;">
-                        <img src="/images/{{ $device->image_url }}" alt="{{ $device->name }}" style="width: 200px; height: 240px; object-fit: contain; border-radius: 8px; margin-right: 32px;">
-                        <div>
+                    <div style="display: flex; align-items: flex-start; gap: 32px;">
+                        {{-- Upper Left: Image --}}
+                        <div style="flex: 0 0 200px;">
+                            <img src="/images/{{ $device->image_url }}" alt="{{ $device->name }}" style="width: 200px; height: 240px; object-fit: contain; border-radius: 8px;">
+                        </div>
+                        {{-- Upper Right: Brand, Device, Price --}}
+                        <div style="flex: 1;" class="mt-5">
+                            {{-- Brand Name and Logo --}}
                             <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                                {{-- Brand Logo --}}
                                 @if ($device->brand->logo_url)
-                                <img src="/images/{{ $device->brand->logo_url }}" alt="{{ $device->brand->logo_url }}" style="width: 24px; height: 24px; object-fit: contain; border-radius: 8px; margin-right: 12px;">
+                                <img src="/images/{{ $device->brand->logo_url }}" alt="{{ $device->brand->logo_url }}" style="width: 32px; height: 32px; object-fit: contain; border-radius: 8px; margin-right: 12px;">
                                 @endif
                                 <h3 style="color: #003684; margin: 0;">{{ $device->brand->name }}</h3>
                             </div>
@@ -47,45 +53,56 @@
 
                             <h3 style="color: #003684; margin-bottom: 8px;">{{ $device->name }}</h3>
                             <p style="margin-bottom: 4px;"><strong>Price:</strong> {{ number_format($device->price) }} MMK</p>
-                            <hr>
-                            <h5 style="margin-top: 16px;">Specifications</h5>
-                            <table border="1" cellpadding="8" cellspacing="0" style="width: 100%;">
-                                <thead>
-                                    <tr>
-                                        <th>Category</th>
-                                        <th>Key</th>
-                                        <th>Value</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @php
-                                    $groupedSpecs = $device->specs->groupBy('category.name');
-                                    @endphp
+                        </div>
+                        @if(!in_array($device->id, $savedDeviceIds))
+                        <form method="POST" action="{{ route('savedDevices.store', $device->id) }}" style="margin-left: 10px;">
+                            @csrf
+                            <button type="submit" class="btn btn-outline-primary" style="border: transparent; hover:transparent"><i class="fa fa-bookmark" style="color: black;"></i>
+                            </button>
+                        </form>
+                        @endif
+                    </div>
+                    {{-- Lower: Specifications and Table --}}
+                    <div style="margin-top: 24px;">
+                        <div class="container-fluid px-0">
+                            {{-- Specs Grouped by Category --}}
+                            @php
+                            $groupedSpecs = $device->specs->groupBy(fn($s) => $s->category->name);
+                            @endphp
 
-                                    @foreach ($groupedSpecs as $categoryName => $specs)
-                                    @foreach ($specs as $index => $spec)
-                                    <tr>
-                                        <td>
-                                            @if ($index === 0)
-                                            <strong>{{ $categoryName }}</strong>
-                                            @endif
-                                        </td>
-                                        <td>{{ $spec->key }}</td>
-                                        <td>{{ $spec->value }}</td>
-                                    </tr>
-                                    @endforeach
-                                    @endforeach
-                                </tbody>
-                            </table>
+                            @foreach ($groupedSpecs as $categoryName => $specs)
+                            <div class="mt-4 p-3 border rounded bg-light">
+                                <h5 class="mb-3 text-primary">{{ $categoryName }}</h5>
+
+                                <table class="table table-bordered table-sm mb-0">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th style="width: 30%">Spec Name</th>
+                                            <th>Value</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($specs as $item)
+                                        <tr>
+                                            <td>{{ $item->key }}</td>
+                                            <td>{{ $item->value }}</td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                            @endforeach
 
                         </div>
                     </div>
-                    @if ($device->reviews->isNotEmpty())
-
+                    {{-- Lower: Review/Feedback Button --}}
                     <div style="margin-top: 24px;">
-                        <a href="{{ route('devices.reviews', $device->id) }}" class="btn btn-primary">View Reviews</a>
+                        @if ($device->reviews->isNotEmpty())
+                        <a href="{{ route('devices.reviews', $device->id) }}" class=" ml-2 btn btn-primary btn-sm px-1 py-0 " style=" white-space: nowrap;">Read Review</a>
+                        @else
+                        <a href="{{ route('createReview') }}" class=" ml-2 btn btn-primary btn-sm px-1 py-0 " style=" white-space: nowrap;">Write Feedback</a>
+                        @endif
                     </div>
-                    @endif
                 </div>
             </div>
         </div>

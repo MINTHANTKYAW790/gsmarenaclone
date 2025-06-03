@@ -13,6 +13,8 @@
                     <img src="{{ asset('images/' . basename($review->image_1)) }}" class="card-img-top" alt="Review Image" style="height: 190px;">
                 @endif
                 <div class="card-body d-flex flex-column">
+                                        <h5 class="card-title">{{ $review->device->name }}</h5>
+
                     <h5 class="card-title">{{ $review->heading }}</h5>
                     <div class=" text-warning">
                         {!! str_repeat('★', (int)$review->rating) !!}

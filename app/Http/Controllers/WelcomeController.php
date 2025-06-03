@@ -77,7 +77,12 @@ class WelcomeController extends Controller
         info($device);
         $brands = Brand::all();
         $device->load('brand', 'specs.category');
-        return view('deviceDetail', compact('device', 'brands',));
+        $savedDevices = SavedDevices::with('device.brand')
+            ->where('user_id', auth()->id())
+            ->get();
+        $savedDeviceIds = $savedDevices->pluck('device_id')->toArray();
+
+        return view('deviceDetail', compact('device', 'brands', 'savedDeviceIds'));
     }
 
     public function savedlist()
@@ -119,5 +124,22 @@ class WelcomeController extends Controller
         $data['user_id'] = auth()->id();
         $this->reviewRepository->create($data);
         return redirect()->route('reviews')->with('success', 'Review created successfully.');
+    }
+
+    public function searchAll(Request $request)
+    {
+        $query = $request->input('query');
+
+        $devices = Device::with(['brand', 'specs.category'])
+            ->where('name', 'like', '%' . $query . '%')
+            ->get();
+
+        $brands = Brand::where('name', 'like', '%' . $query . '%')->get();
+
+        $savedDeviceIds = auth()->check()
+            ? auth()->user()->savedDevices->pluck('id')->toArray()
+            : [];
+
+        return view('results', compact('devices', 'brands', 'query', 'savedDeviceIds'));
     }
 }

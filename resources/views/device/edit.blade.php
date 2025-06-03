@@ -7,13 +7,13 @@
 'title' => 'Device',
 'bc_data' => [
 [
-'link' => '',
+'link' => route('device.index'),
 'text' => 'Home',
 'is_active' => false
 ],
 [
-'link' => '',
-'text' => 'List',
+'link' => route('device.index'),
+'text' => 'Device List',
 'is_active' => false
 ],
 [

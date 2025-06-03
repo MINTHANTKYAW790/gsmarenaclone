@@ -7,13 +7,13 @@
 'title' => 'Brand',
 'bc_data' => [
 [
-'link' => '',
+'link' => route('brand.index'),
 'text' => 'Home',
 'is_active' => false
 ],
 [
-'link' => '',
-'text' => 'List',
+'link' => route('brand.index'),
+'text' => 'Brand List',
 'is_active' => false
 ],
 [

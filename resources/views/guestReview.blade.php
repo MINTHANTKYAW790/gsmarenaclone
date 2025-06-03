@@ -6,6 +6,7 @@
         <div class="col-md-12 col-lg-12">
             <div class="card mb-4 shadow-lg border-0">
                 <div class="card-body">
+                    <h4 class="card-title mb-1">{{ $review->device->name }}</h4>
                     <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap">
                         <div class="flex-grow-1">
                             <h4 class="card-title mb-1">{{ $review->heading }}</h4>

@@ -7,13 +7,13 @@
 'title' => 'Review',
 'bc_data' => [
 [
-'link' => '',
+'link' => route('review.index'),
 'text' => 'Home',
 'is_active' => false
 ],
 [
-'link' => '',
-'text' => 'List',
+'link' => route('review.index'),
+'text' => 'Review List',
 'is_active' => false
 ],
 [
@@ -32,7 +32,7 @@
                 <div class="form-group row col-md-7">
                     <label for="device_id" class="col-sm-4 col-form-label">Select Device</label>
                     <div class="col-sm-8">
-                        <select name="device_id" class="form-control form-control-sm @error('device_id') is-invalid @enderror" id="device_id">
+                        <select name="device_id" class="form-control form-control-sm @error('device_id') is-invalid @enderror" id="device_id" required>
                             <option value="">-- Select Device --</option>
                             @foreach ($devices as $device)
                             <option value="{{ $device->id }}">{{ $device->name }}</option>
@@ -45,7 +45,7 @@
                     <label for="heading" class="col-sm-4 col-form-label">Heading <span class="text-danger">*</span></label>
                     <div class="col-sm-8">
                         <input type="text" id="heading" class="form-control form-control-sm @error('heading') is-invalid @enderror"
-                            name="heading">
+                            name="heading" required>
                         @error('heading')
                         <span class="text-danger">{{ $message }}</span>
                         @enderror
@@ -54,7 +54,7 @@
                 <div class="form-group row col-md-7">
                     <label for="image_1" class="col-sm-4 col-form-label">Image 1<span class="text-danger">*</span></label>
                     <div class="col-sm-8">
-                        <input type="file" id="image_1" name="image_1" hidden accept="image/*">
+                        <input type="file" id="image_1" name="image_1" hidden accept="image/*" required>
                         <div class="align-items-center bg-light d-flex justify-content-center rounded w-100 img-container" style="height: 250px;">
                             <img src="{{ asset('images/default.png') }}" alt="Default Image" class="img-fluid default">
                             <img alt="Preview Image" class="img-fluid d-none w-100 h-100 rounded">
@@ -66,7 +66,7 @@
                     <label for="paragraph_1" class="col-sm-4 col-form-label">Paragraph 1 <span class="text-danger">*</span></label>
                     <div class="col-sm-8">
                         <textarea id="paragraph_1" class="form-control form-control-sm @error('paragraph_1') is-invalid @enderror"
-                            name="paragraph_1" rows="4"></textarea>
+                            name="paragraph_1" rows="4" required></textarea>
                         @error('paragraph_1')
                         <span class="text-danger">{{ $message }}</span>
                         @enderror
@@ -75,7 +75,7 @@
                 <div class="form-group row col-md-7">
                     <label for="image_2" class="col-sm-4 col-form-label">Image 2    <span class="text-danger">*</span></label>
                     <div class="col-sm-8">
-                        <input type="file" id="image_2" name="image_2" hidden accept="image/*">
+                        <input type="file" id="image_2" name="image_2" hidden accept="image/*" required>
                         <div class="align-items-center bg-light d-flex justify-content-center rounded w-100 img-container" style="height: 250px;">
                             <img src="{{ asset('images/default.png') }}" alt="Default Image" class="img-fluid default">
                             <img alt="Preview Image" class="img-fluid d-none w-100 h-100 rounded">
@@ -87,7 +87,7 @@
                     <label for="paragraph_2" class="col-sm-4 col-form-label">Paragraph 2 <span class="text-danger">*</span></label>
                     <div class="col-sm-8">
                         <textarea id="paragraph_2" class="form-control form-control-sm @error('paragraph_2') is-invalid @enderror"
-                            name="paragraph_2" rows="4"></textarea>
+                            name="paragraph_2" rows="4" required></textarea>
                         @error('paragraph_2')
                         <span class="text-danger">{{ $message }}</span>
                         @enderror
@@ -96,7 +96,7 @@
                 <div class="form-group row col-md-7">
                     <label for="rating" class="col-sm-4 col-form-label">Rating <span class="text-danger">*</span></label>
                     <div class="col-sm-8 d-flex align-items-center">
-                        <select id="rating" name="rating" class="form-control form-control-sm @error('rating') is-invalid @enderror">
+                        <select id="rating" name="rating" class="form-control form-control-sm @error('rating') is-invalid @enderror" required>
                             <option value="">-- Select Rating --</option>
                             @for ($i = 1; $i <= 5; $i++)
                                 <option value="{{ $i }}">{{ $i }}</option>

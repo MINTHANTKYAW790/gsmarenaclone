@@ -7,13 +7,13 @@
 'title' => 'Spec',
 'bc_data' => [
 [
-'link' => '',
+'link' => route('spec.index'),
 'text' => 'Home',
 'is_active' => false
 ],
 [
-'link' => '',
-'text' => 'List',
+'link' => route('spec.index'),
+'text' => 'Spec List',
 'is_active' => false
 ],
 [
@@ -32,7 +32,7 @@
                 <div class="form-group row col-md-7">
                     <label for="device_id" class="col-sm-4 col-form-label">Select Device</label>
                     <div class="col-sm-8">
-                        <select name="device_id" class="form-control form-control-sm @error('device_id') is-invalid @enderror" id="device_id">
+                        <select name="device_id" class="form-control form-control-sm @error('device_id') is-invalid @enderror" id="device_id" required>
                             <option value="">-- Select Device --</option>
                             @foreach ($devices as $device)
                             <option value="{{ $device->id }}">{{ $device->name }}</option>

@@ -7,7 +7,7 @@
 'title' => 'Spec Category',
 'bc_data' => [
 [
-'link' => '',
+'link' => route('brand.index'),
 'text' => 'Home',
 'is_active' => false
 ],

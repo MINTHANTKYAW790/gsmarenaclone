@@ -7,13 +7,13 @@
 'title' => 'Brand',
 'bc_data' => [
 [
-'link' => '',
+'link' => route('brand.index'),
 'text' => 'Home',
 'is_active' => false
 ],
 [
-'link' => '',
-'text' => 'List',
+'link' => route('brand.index'),
+'text' => 'Brand List',
 'is_active' => false
 ],
 [
@@ -33,7 +33,7 @@
                     <label for="name" class="col-sm-4 col-form-label">Name <span class="text-danger">*</span></label>
                     <div class="col-sm-8">
                         <input type="text" id="name" class="form-control form-control-sm @error('name') is-invalid @enderror"
-                            name="name">
+                            name="name" required> 
                         @error('name')
                         <span class="text-danger">{{ $message }}</span>
                         @enderror
@@ -42,7 +42,7 @@
                 <div class="form-group row col-md-7" >
                     <label for="logo_url" class="col-sm-4 col-form-label">Logo Image <span class="text-danger">*</span></label>
                     <div class="col-sm-8">
-                        <input type="file" id="logo_url" name="logo_url" hidden accept="image/*">
+                        <input type="file" id="logo_url" name="logo_url" hidden accept="image/*" required>
                         <div class="align-items-center bg-light d-flex justify-content-center rounded w-100 img-container" style="height: 250px;">
                             <img src="{{ asset('images/default.png') }}" alt="Default Image" class="img-fluid default">
                             <img alt="Preview Image" class="img-fluid d-none w-100 h-100 rounded">
@@ -54,7 +54,7 @@
                     <label for="website_url" class="col-sm-4 col-form-label">Website Url <span class="text-danger">*</span></label>
                     <div class="col-sm-8">
                         <input type="text" id="website_url" class="form-control form-control-sm @error('website_url') is-invalid @enderror"
-                            name="website_url">
+                            name="website_url" required>
                         @error('website_url')
                         <span class="text-danger">{{ $message }}</span>
                         @enderror

@@ -27,6 +27,10 @@ Route::get('/compare/load-device/{device}', [CompareController::class, 'loadDevi
 
 Route::get('/news', [NewsController::class, 'index'])->name('news.index');
 Route::get('/news/search', [NewsController::class, 'search'])->name('news.search');
+
+Route::get('/search', [WelcomeController::class, 'searchAll'])->name('search.all');
+
+
 Route::middleware(['auth', 'role:customer,admin'])->group(function () {
     Route::get('/create-review', [WelcomeController::class, 'createReview'])->name('createReview');
     Route::post('/store-review', [WelcomeController::class, 'storeReview'])->name('storeReview');

@@ -80,6 +80,7 @@ class DeviceController extends Controller
         $data['image_url'] = $request->file('image_url')->move(public_path('images'), $imageFileName);
         info("data");
         info($data);
+        
         $data['image_url'] = $imageFileName;
         $this->deviceRepository->create($data);
         return redirect()->route('device.index')->with('success', 'Device created successfully.');

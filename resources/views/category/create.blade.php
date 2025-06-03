@@ -7,13 +7,13 @@
 'title' => 'Spec Category',
 'bc_data' => [
 [
-'link' => '',
+'link' => route('category.index'),
 'text' => 'Home',
 'is_active' => false
 ],
 [
-'link' => '',
-'text' => 'List',
+'link' => route('category.index'),
+'text' => 'Category List',
 'is_active' => false
 ],
 [
@@ -33,7 +33,7 @@
                     <label for="name" class="col-sm-4 col-form-label">Name <span class="text-danger">*</span></label>
                     <div class="col-sm-8">
                         <input type="text" id="name" class="form-control form-control-sm @error('name') is-invalid @enderror"
-                            name="name">
+                            name="name" required>
                         @error('name')
                         <span class="text-danger">{{ $message }}</span>
                         @enderror

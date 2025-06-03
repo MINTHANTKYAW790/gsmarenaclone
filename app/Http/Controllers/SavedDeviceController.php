@@ -16,6 +16,7 @@ class SavedDeviceController extends Controller
 
     public function store(Device $device)
     {
+        
         info($device);
         SavedDevices::firstOrCreate([
             'user_id' => Auth::id(),
