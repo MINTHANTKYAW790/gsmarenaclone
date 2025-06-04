@@ -39,7 +39,7 @@
 
         .header {
             justify-content: space-between;
-            background: linear-gradient(to right, #dff3fc, #0091ea);
+            /* background: linear-gradient(to right, #dff3fc, #0091ea); */
         }
 
         .header-left img {
@@ -79,7 +79,7 @@
 
         .mainContainer {
             border-top: 1px dotted black;
-            background: linear-gradient(to right, #dff3fc, #0091ea);
+            /* background: linear-gradient(to right, #dff3fc, #0091ea); */
             padding: 1% 2%;
         }
 
@@ -151,6 +151,15 @@
             margin: 0;
             padding: 2% 0;
         }
+        .nav-link {
+    color: #000;
+    text-decoration: none;
+}
+
+.nav-link.active {
+    color: #F26522;
+}
+
     </style>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
         integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
@@ -162,19 +171,29 @@
     <div class="wrapper">
 
         <!-- Header -->
-        <div class="header">
+        <div class="header" style="border-bottom: 1px solid #F26522; position: sticky; top: 0; z-index: 1000; background: #fff;">
             <div class="header-left">
                 <a href="{{ route('welcome') }}" style="text-decoration: none; color: inherit;">
-                    <h3>MobileArena</h3>
+                    <h3 style="color: #F26522">LapCompare</h3>
                 </a>
             </div>
             <div class="header-right">
-                <a href="{{ route('compare.index') }}">Compare</a>
-                <a href="{{ route('reviews') }}">Reviews</a>
-                <a href="{{ route('news.index') }}">News</a>
+                <a href="{{ route('compare.index') }}"
+                   style="color: {{ request()->routeIs('compare.index') ? '#F26522' : '#000' }};">
+                    <i class="fa-solid fa-code-compare mr-2"></i>Compare
+                </a>
+                <a href="{{ route('reviews') }}"
+                   style="color: {{ request()->routeIs('reviews') ? '#F26522' : '#000' }};">
+                    <i class="fa-solid fa-star mr-2"></i>Reviews
+                </a>
+                <a href="{{ route('news.index') }}"
+                   style="color: {{ request()->routeIs('news.index') ? '#F26522' : '#000' }};">
+                    <i class="fa-solid fa-newspaper mr-2"></i>News
+                </a>
                 <!-- <a href="{{ route('reviews') }}">About us</a> -->
-                <a href="{{ route('savedlist') }}">
-                    Saved
+                <a href="{{ route('savedlist') }}"
+                   style="color: {{ request()->routeIs('savedlist') ? '#F26522' : '#000' }};">
+                    <i class="fa-solid fa-bookmark mr-2"></i>Saved
                     @if(Auth::check() && isset(Auth::user()->savedDevices))
                     <sup style="font-size: 12px; color: #003684;">
                         {{ count(Auth::user()->savedDevices) }}
@@ -184,7 +203,7 @@
             </div>
             <form action="{{ route('search.all') }}" method="GET" class="d-flex">
                 <input type="text" name="query" class="form-control" placeholder="Search devices or brands..." required>
-                <button type="submit" class="btn btn-primary ms-2">Search</button>
+                <button type="submit" class="btn ms-2" style="background-color: #f26522;color:white"><i class="fa-solid fa-magnifying-glass"></i></button>
             </form>
 
             @if(Auth::check())
@@ -199,7 +218,9 @@
                 </form>
             </div>
             @else
-            <a href="{{ route('login') }}" class="btn btn-primary" style="margin-left: 20px;background-color:#003684">Login</a>
+            <a href="{{ route('login') }}" style="margin-left: 20px; color: {{ request()->routeIs('login') ? '#F26522' : '#000' }};">
+                <i class="fa-solid fa-user mr-1"></i> Login
+            </a>
             @endif
         </div>
 
@@ -212,7 +233,7 @@
                 <div style="flex: 1; min-width: 200px; text-align: left;">
                     <div style="font-weight: bold; font-size: 18px;">
                         <a href="{{ route('welcome') }}" style="text-decoration: none; color: inherit;" class="m-0 p-0">
-                            MobileArena
+                            LapCompare
                         </a>
                     </div>
                     <div style="font-size: 14px; color: #ccc;">Technical support</div>

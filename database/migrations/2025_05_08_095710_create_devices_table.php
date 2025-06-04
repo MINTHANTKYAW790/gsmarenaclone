@@ -21,7 +21,7 @@ class CreateDevicesTable extends Migration
             $table->decimal('price', 10, 2)->nullable();
             $table->string('image_url')->nullable();
             $table->string('os')->nullable();
-            $table->enum('device_type', ['phone', 'tablet', 'smartwatch'])->default('phone');
+            $table->string('device_type')->nullable();
             $table->timestamps();
         });
     }
