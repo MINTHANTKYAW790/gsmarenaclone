@@ -50,7 +50,7 @@
 
             <div class="form-group">
                 <label for="device_id" class="review-form-label">Select Device</label>
-                <select name="device_id" class="form-control @error('device_id') is-invalid @enderror" id="device_id">
+                <select name="device_id" class="form-control @error('device_id') is-invalid @enderror" id="device_id" required>
                     <option value="">-- Select Device --</option>
                     @foreach ($devices as $device)
                         <option value="{{ $device->id }}">{{ $device->name }}</option>
@@ -62,7 +62,7 @@
             <div class="form-group">
                 <label for="heading" class="review-form-label">Heading <span class="text-danger">*</span></label>
                 <input type="text" id="heading" class="form-control @error('heading') is-invalid @enderror"
-                    name="heading" placeholder="Enter review heading">
+                    name="heading" placeholder="Enter review heading" required>
                 @error('heading')
                     <span class="text-danger">{{ $message }}</span>
                 @enderror
@@ -70,7 +70,7 @@
 
             <div class="form-group">
                 <label for="image_1" class="review-form-label">Image 1 <span class="text-danger">*</span></label>
-                <input type="file" id="image_1" name="image_1" hidden accept="image/*">
+                <input type="file" id="image_1" name="image_1" hidden accept="image/*" required>
                 <div class="img-container d-flex align-items-center justify-content-center rounded mb-2" style="height: 220px;" onclick="document.getElementById('image_1').click()">
                     <img src="{{ asset('images/default.png') }}" alt="Default Image" class="img-fluid default" id="preview_image_1">
                 </div>
@@ -81,7 +81,7 @@
             <div class="form-group">
                 <label for="paragraph_1" class="review-form-label">Paragraph 1 <span class="text-danger">*</span></label>
                 <textarea id="paragraph_1" class="form-control @error('paragraph_1') is-invalid @enderror"
-                    name="paragraph_1" rows="4" placeholder="Write your first paragraph..."></textarea>
+                    name="paragraph_1" rows="4" placeholder="Write your first paragraph..." required></textarea>
                 @error('paragraph_1')
                     <span class="text-danger">{{ $message }}</span>
                 @enderror
@@ -89,7 +89,7 @@
 
             <div class="form-group">
                 <label for="image_2" class="review-form-label">Image 2 <span class="text-danger">*</span></label>
-                <input type="file" id="image_2" name="image_2" hidden accept="image/*">
+                <input type="file" id="image_2" name="image_2" hidden accept="image/*" required>
                 <div class="img-container d-flex align-items-center justify-content-center rounded mb-2" style="height: 220px;" onclick="document.getElementById('image_2').click()">
                     <img src="{{ asset('images/default.png') }}" alt="Default Image" class="img-fluid default" id="preview_image_2">
                 </div>
@@ -100,7 +100,7 @@
             <div class="form-group">
                 <label for="paragraph_2" class="review-form-label">Paragraph 2 <span class="text-danger">*</span></label>
                 <textarea id="paragraph_2" class="form-control @error('paragraph_2') is-invalid @enderror"
-                    name="paragraph_2" rows="4" placeholder="Write your second paragraph..."></textarea>
+                    name="paragraph_2" rows="4" placeholder="Write your second paragraph..." required></textarea>
                 @error('paragraph_2')
                     <span class="text-danger">{{ $message }}</span>
                 @enderror
@@ -108,7 +108,7 @@
 
             <div class="form-group">
                 <label for="rating" class="review-form-label">Rating <span class="text-danger">*</span></label>
-                <select id="rating" name="rating" class="form-control @error('rating') is-invalid @enderror">
+                <select id="rating" name="rating" class="form-control @error('rating') is-invalid @enderror" required>
                     <option value="">-- Select Rating --</option>
                     @for ($i = 1; $i <= 5; $i++)
                         <option value="{{ $i }}">{{ $i }}</option>
