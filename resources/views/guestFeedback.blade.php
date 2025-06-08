@@ -35,8 +35,8 @@
                             </div>
                         </div>
                         <div class="row g-3 align-items-center">
-                            <div class="col-md-4">
-                                <img src="{{ asset('images/' . basename($feedback->image_1)) }}" class="img-fluid rounded shadow-sm mb-3" alt="Review Image 1" style="max-height: 170px; object-fit: cover; width: 100%;">
+                            <div class="col-md-12">
+                                <img src="{{ asset('images/' . basename($feedback->image_1)) }}" class="img-fluid rounded shadow-sm mb-3 col-md-4" alt="Review Image 1" style="max-height: 170px; object-fit: cover; width: 100%;">
                                 <p class="card-text mt-2">{!! nl2br(e($feedback->paragraph_1)) !!}</p>
                             </div>
                             <div class="col-md-8"></div>

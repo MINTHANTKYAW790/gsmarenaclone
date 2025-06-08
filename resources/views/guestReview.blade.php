@@ -20,18 +20,16 @@
                         </div>
                     </div>
                     <div class="row g-3 align-items-center">
-                        <div class="col-md-4">
-                            <img src="{{ asset('images/' . basename($review->image_1)) }}" class="img-fluid rounded shadow-sm mb-3" alt="Review Image 1" style="max-height: 170px; object-fit: cover; width: 100%;">
+                        <div class="col-12">
+                            <img src="{{ asset('images/' . basename($review->image_1)) }}" class="img-fluid rounded shadow-sm mb-3 w-100 col-md-4"  alt="Review Image 1" style="max-height: 250px; object-fit: cover;">
                             <p class="card-text mt-2">{!! nl2br(e($review->paragraph_1)) !!}</p>
                         </div>
-                        <div class="col-md-8"></div>
                     </div>
                     <div class="row g-3 align-items-center">
-                        <div class="col-md-4">
-                            <img src="{{ asset('images/' . basename($review->image_2)) }}" class="img-fluid rounded shadow-sm mb-3" alt="Review Image 1" style="max-height: 170px; object-fit: cover; width: 100%;">
+                        <div class="col-12">
+                            <img src="{{ asset('images/' . basename($review->image_2)) }}" class="img-fluid rounded shadow-sm mb-3 w-100 col-md-4" alt="Review Image 2" style="max-height: 250px; object-fit: cover;">
                             <p class="card-text mt-2">{!! nl2br(e($review->paragraph_2)) !!}</p>
                         </div>
-                        <div class="col-md-8"></div>
                     </div>
                     @if($review->logo1 || $review->logo2 || $review->logo3)
                         <div class="mt-4">
