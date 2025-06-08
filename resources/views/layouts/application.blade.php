@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>C2 Mobile</title>
+    <title>TechBit</title>
     <style>
         html,
         body {
@@ -178,7 +178,7 @@
         <div class="header">
             <div class="header-left">
                 <a href="{{ route('welcome') }}" style="text-decoration: none; color: inherit;">
-                    <h3>MobileArena</h3>
+                    <h3>TechBit</h3>
                 </a>
             </div>
             <div class="header-right">
@@ -195,10 +195,24 @@
                     @endif
                 </a>
             </div>
-            <form action="{{ route('search.all') }}" method="GET" class="d-flex">
-                <input type="text" name="query" class="form-control" placeholder="Search devices or brands..." required>
-                <button type="submit" class="btn btn-primary ms-2">Search</button>
+            <form action="{{ route('search.all') }}" method="GET" class="d-flex align-items-center" id="searchForm">
+                <input type="text" name="query" class="form-control" placeholder="Search devices or brands..." required id="searchInput">
+                <button type="submit" class="btn btn-primary ms-2 ml-1">Search</button>
+                <button type="button" class="btn btn-secondary ms-2 ml-1" id="cancelSearch">Cancel</button>
             </form>
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const searchInput = document.getElementById('searchInput');
+                    const cancelBtn = document.getElementById('cancelSearch');
+                    searchInput.addEventListener('input', function() {
+                        cancelBtn.style.display = this.value ? 'inline-block' : 'inline-block';
+                    });
+                    cancelBtn.addEventListener('click', function() {
+                        searchInput.value = '';
+                        searchInput.focus();
+                    });
+                });
+            </script>
 
             @if(Auth::check())
             <div style="margin-left: 20px; font-weight: bold; display: flex; align-items: center;">
@@ -247,7 +261,7 @@
                 <div style="flex: 1; min-width: 200px; text-align: left;">
                     <div style="font-weight: bold; font-size: 18px;">
                         <a href="{{ route('welcome') }}" style="text-decoration: none; color: inherit;" class="m-0 p-0">
-                            MobileArena
+                            TechBit
                         </a>
                     </div>
                     <div style="font-size: 14px; color: #ccc;">Technical support</div>

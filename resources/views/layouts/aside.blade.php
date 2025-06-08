@@ -1,7 +1,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <a href="{{ url('/') }}" class="brand-link">
         <img src="{{ asset('images/favicon.ico')}}" alt="" class="brand-image elevation-3" style="opacity: 1">
-        <span class="brand-text font-weight-light">MobileArena</span>
+        <span class="brand-text font-weight-light">TechBit</span>
     </a>
     <div class="sidebar">
         <div class="form-inline mt-2">
