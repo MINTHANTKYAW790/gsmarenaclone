@@ -151,10 +151,23 @@
             margin: 0;
             padding: 2% 0;
         }
+
+    /* Override Toastr success background and text color */
+    #toast-container > .toast-success {
+        background-color:rgb(4, 138, 35) !important;  /* Light green */
+    }
+
+    /* Optional: close button color */
+    #toast-container > .toast-success .toast-close-button {
+        color: #0b4e2f !important;
+    }
+
     </style>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
         integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<!-- In <head> section -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
 </head>
 
@@ -172,7 +185,7 @@
                 <a href="{{ route('compare.index') }}">Compare</a>
                 <a href="{{ route('reviews') }}">Reviews</a>
                 <a href="{{ route('news.index') }}">News</a>
-                <!-- <a href="{{ route('reviews') }}">About us</a> -->
+                <a href="{{ route('feedback.index') }}">Feedback</a>
                 <a href="{{ route('savedlist') }}">
                     Saved
                     @if(Auth::check() && isset(Auth::user()->savedDevices))
@@ -207,6 +220,28 @@
             @yield('content')
         </div>
 
+        @if (session()->has('success'))
+        <script type="module">
+            $(document).ready(function() {
+                //toastr.options.closeButton = true;
+                //toastr.options.closeHtml = '<button class="position-static"><i class="fas fa-times"></i></button>';
+                //toastr.options.timeOut = 100000;
+                toastr.success('{{session('success')}}')
+            });
+        </script>
+        @endif
+
+        @if (session()->has('error'))
+        <script type="module">
+            $(document).ready(function() {
+                toastr.options.closeButton = true;
+                toastr.options.closeHtml = '<button class="position-static"><i class="fas fa-times"></i></button>';
+                toastr.options.timeOut = 100000;
+                toastr.error('{{session('error')}}');
+            });
+        </script>
+        @endif
+
         <footer class="footer">
             <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; flex-wrap: wrap; padding: 10px 15px; background-color: #222; color: white;">
                 <div style="flex: 1; min-width: 200px; text-align: left;">
@@ -236,6 +271,24 @@
         integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous">
     </script>
 
+    <!-- Before </body> tag -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+
 </body>
 
+<script type="module">
+    document.addEventListener('DOMContentLoaded', function() {
+        window.addEventListener('show-toast', event => {
+            const type = event.detail.type;
+            const message = event.detail.message;
+            if (type === 'success') {
+                toastr.success(message);
+            } else if (type === 'error') {
+                toastr.error(message);
+            }
+        });
+    });
+</script>
 </html>

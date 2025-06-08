@@ -16,13 +16,10 @@ class SavedDeviceController extends Controller
 
     public function store(Device $device)
     {
-        
-        info($device);
         SavedDevices::firstOrCreate([
             'user_id' => Auth::id(),
             'device_id' => $device->id,
         ]);
-
         return back()->with('success', 'Device saved!');
     }
 

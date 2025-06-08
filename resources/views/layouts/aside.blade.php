@@ -60,7 +60,7 @@
                     <a href="{{ route('review.index') }}" class="nav-link @if (Request::is('review*')) active @endif">
                         <i class="far fa-circle nav-icon"></i>
                         <p>
-                            Revieww
+                            Review
                         </p>
                     </a>
                 </li>

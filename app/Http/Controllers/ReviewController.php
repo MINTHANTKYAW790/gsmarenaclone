@@ -94,8 +94,21 @@ class ReviewController extends Controller
         $image2FileName = auth()->id() . '_' . time() . '.' . $request->file('image_2')->extension();
         $data['image_2'] = $request->file('image_2')->move(public_path('images'), $image2FileName);
 
+        $logo1 = auth()->id() . '_' . time() . '.' . $request->file('logo1')->extension();
+        $data['logo1'] = $request->file('logo1')->move(public_path('images'), $logo1);
+
+        $logo2 = auth()->id() . '_' . time() . '.' . $request->file('logo2')->extension();
+        $data['logo2'] = $request->file('logo2')->move(public_path('images'), $logo2);
+
+        $logo3 = auth()->id() . '_' . time() . '.' . $request->file('logo3')->extension();
+        $data['logo3'] = $request->file('logo3')->move(public_path('images'), $logo3);
+
         $data['image_1'] = $image1FileName;
         $data['image_2'] = $image2FileName;
+        $data['logo1'] = $logo1;
+        $data['logo2'] = $logo2;
+        $data['logo3'] = $logo3;
+
         $data['user_id'] = auth()->id();
         $this->reviewRepository->create($data);
         return redirect()->route('review.index')->with('success', 'Review created successfully.');
@@ -122,9 +135,28 @@ class ReviewController extends Controller
             $image2FileName = auth()->id() . '_' . time() . '.' . $request->file('image_2')->extension();
             $request->file('image_2')->move(public_path('images'), $image2FileName);
         }
+         $logo1 = $review->logo1;
+        if ($request->hasFile('logo1')) {
+            $logo1 = auth()->id() . '_' . time() . '.' . $request->file('logo1')->extension();
+            $request->file('logo1')->move(public_path('images'), $logo1);
+        }
+         $logo2 = $review->logo2;
+        if ($request->hasFile('logo2')) {
+            $logo2 = auth()->id() . '_' . time() . '.' . $request->file('logo2')->extension();
+            $request->file('logo2')->move(public_path('images'), $logo2);
+        }
+        $logo3 = $review->logo3;
+        if ($request->hasFile('logo3')) {
+            $logo3 = auth()->id() . '_' . time() . '.' . $request->file('logo3')->extension();
+            $request->file('logo3')->move(public_path('images'), $logo3);
+        }
         $data = $request->all();
         $data['image_1'] = $image1FileName;
         $data['image_2'] = $image2FileName;
+        $data['logo1'] = $logo1;
+        $data['logo2'] = $logo2;
+        $data['logo3'] = $logo3;
+
         $this->reviewRepository->update($data, $review->id);
         return redirect()->route('review.index')->with('success', 'Review updated successfully.');
     }

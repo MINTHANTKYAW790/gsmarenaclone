@@ -60,7 +60,8 @@ class WelcomeController extends Controller
         if (!$review) {
             $review = Review::where('id', $id)->first();
         }
-
+        info($review);
+        info("this is the review");
 
         return view('guestReview', compact('brands', 'device', 'review'));
     }

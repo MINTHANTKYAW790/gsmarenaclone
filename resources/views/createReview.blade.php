@@ -88,25 +88,6 @@
             </div>
 
             <div class="form-group">
-                <label for="image_2" class="review-form-label">Image 2 <span class="text-danger">*</span></label>
-                <input type="file" id="image_2" name="image_2" hidden accept="image/*" required>
-                <div class="img-container d-flex align-items-center justify-content-center rounded mb-2" style="height: 220px;" onclick="document.getElementById('image_2').click()">
-                    <img src="{{ asset('images/default.png') }}" alt="Default Image" class="img-fluid default" id="preview_image_2">
-                </div>
-                <small class="text-muted">Click the box to select an image.</small>
-                @error('image_2') <span class="text-danger">{{ $message }}</span> @enderror
-            </div>
-
-            <div class="form-group">
-                <label for="paragraph_2" class="review-form-label">Paragraph 2 <span class="text-danger">*</span></label>
-                <textarea id="paragraph_2" class="form-control @error('paragraph_2') is-invalid @enderror"
-                    name="paragraph_2" rows="4" placeholder="Write your second paragraph..." required></textarea>
-                @error('paragraph_2')
-                    <span class="text-danger">{{ $message }}</span>
-                @enderror
-            </div>
-
-            <div class="form-group">
                 <label for="rating" class="review-form-label">Rating <span class="text-danger">*</span></label>
                 <select id="rating" name="rating" class="form-control @error('rating') is-invalid @enderror" required>
                     <option value="">-- Select Rating --</option>

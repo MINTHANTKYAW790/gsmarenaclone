@@ -25,9 +25,9 @@ class AuthController extends Controller
             $request->session()->regenerate();
             $user = Auth::user();
             if ($user->role === 'admin') {
-                return redirect()->route('brand.index');
+                return redirect()->route('brand.index')->with('success','You have successfully login');
             } else if ($user->role === 'customer') {
-                return redirect('/');
+                return redirect('/')->with('success','You have successfully login');
             } else {
                 return redirect('/');
             }
@@ -43,7 +43,7 @@ class AuthController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect('/');
+        return redirect('/')->with('success','You have successfully logout');
     }
 
     public function showRegisterForm()
@@ -70,9 +70,9 @@ class AuthController extends Controller
         Auth::login($user);
 
         if ($user->role === 'admin') {
-            return redirect()->route('brand.index');
+            return redirect()->route('brand.index')->with('success','You have successfully register');
         } else if ($user->role === 'customer') {
-            return redirect('/');
+            return redirect('/')->with('success','You have successfully register');
         } else {
             return redirect('/');
         }

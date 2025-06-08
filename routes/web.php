@@ -8,6 +8,7 @@ use App\Http\Controllers\SpecController;
 use App\Http\Controllers\SpecCategoryController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\CompareController;
+use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SavedDeviceController;
@@ -37,6 +38,7 @@ Route::middleware(['auth', 'role:customer,admin'])->group(function () {
     Route::post('/save-device/{device}', [SavedDeviceController::class, 'store'])->name('savedDevices.store');
     Route::get('/saved_list', [WelcomeController::class, 'savedList'])->name('savedlist');
     Route::delete('/saved_list/{device}', [WelcomeController::class, 'deleteFromSavedList'])->name('savedDevices.destroy');
+    Route::resource('feedback', FeedbackController::class);
 });
 // Auth routes
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
@@ -49,6 +51,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::resource('brand', BrandController::class);
     Route::resource('device', DeviceController::class);
     Route::resource('spec', SpecController::class);
-    Route::resource('category', SpecCategoryController::class);
+    Route::resource('category', SpecCategoryController::class)->except(['update','view']);
+    Route::get('category/{id}', [SpecCategoryController::class, 'show'])->name('category.update');
+    Route::put('category/{id}', [SpecCategoryController::class, 'update'])->name('category.update');
     Route::resource('review', ReviewController::class);
 });

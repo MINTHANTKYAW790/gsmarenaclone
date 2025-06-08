@@ -107,6 +107,72 @@
                         @enderror
                     </div>
                 </div>
+
+                <div class="form-group row col-md-7">
+                    <label for="logo1" class="col-sm-4 col-form-label">Logo 1<span class="text-danger">*</span></label>
+                    <div class="col-sm-8">
+                        <input type="file" id="logo1" name="logo1" hidden accept="image/*" required>
+                        <div class="align-items-center bg-light d-flex justify-content-center rounded w-100 img-container" style="height: 150px;width:150px !important;">
+                            <img src="{{ asset('images/default.png') }}" alt="Default Image" class="img-fluid default">
+                            <img alt="Preview Image" class="img-fluid d-none w-100 h-100 rounded">
+                        </div>
+                        @error('logo1') <span class="text-danger">{{ $message }}</span> @enderror
+                    </div>
+                </div>
+                <div class="form-group row col-md-7">
+                    <label for="link1" class="col-sm-4 col-form-label">Link 1<span class="text-danger">*</span></label>
+                    <div class="col-sm-8">
+                        <input type="text" id="link1" class="form-control form-control-sm @error('link1') is-invalid @enderror"
+                            name="link1" required>
+                        @error('link1')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="form-group row col-md-7">
+                    <label for="logo2" class="col-sm-4 col-form-label">Logo 2<span class="text-danger">*</span></label>
+                    <div class="col-sm-8">
+                        <input type="file" id="logo2" name="logo2" hidden accept="image/*" required>
+                        <div class="align-items-center bg-light d-flex justify-content-center rounded w-100 img-container" style="height: 150px;width:150px !important;">
+                            <img src="{{ asset('images/default.png') }}" alt="Default Image" class="img-fluid default">
+                            <img alt="Preview Image" class="img-fluid d-none w-100 h-100 rounded">
+                        </div>
+                        @error('logo2') <span class="text-danger">{{ $message }}</span> @enderror
+                    </div>
+                </div>
+                <div class="form-group row col-md-7">
+                    <label for="link2" class="col-sm-4 col-form-label">Link 2 <span class="text-danger">*</span></label>
+                    <div class="col-sm-8">
+                        <input type="text" id="link2" class="form-control form-control-sm @error('link2') is-invalid @enderror"
+                            name="link2" required>
+                        @error('link2')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="form-group row col-md-7">
+                    <label for="logo3" class="col-sm-4 col-form-label">Logo 3<span class="text-danger">*</span></label>
+                    <div class="col-sm-8">
+                        <input type="file" id="logo3" name="logo3" hidden accept="image/*" required>
+                        <div class="align-items-center bg-light d-flex justify-content-center rounded w-100 img-container" style="height: 150px;width:150px !important;">
+                            <img src="{{ asset('images/default.png') }}" alt="Default Image" class="img-fluid default">
+                            <img alt="Preview Image" class="img-fluid d-none w-100 h-100 rounded">
+                        </div>
+                        @error('logo3') <span class="text-danger">{{ $message }}</span> @enderror
+                    </div>
+                </div>
+                <div class="form-group row col-md-7">
+                    <label for="link3" class="col-sm-4 col-form-label">Link 3<span class="text-danger">*</span></label>
+                    <div class="col-sm-8">
+                        <input type="text" id="link3" class="form-control form-control-sm @error('link3') is-invalid @enderror"
+                            name="link3" required>
+                        @error('link3')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                </div>
                 <div class="col-12 mt-3 text-right">
                     <button type="button" class="btn btn-sm btn-cancel back">Back</button>
                     <button type="submit" class="ml-2 btn btn-sm btn-primary">

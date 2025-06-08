@@ -22,19 +22,42 @@
                     <div class="row g-3 align-items-center">
                         <div class="col-md-4">
                             <img src="{{ asset('images/' . basename($review->image_1)) }}" class="img-fluid rounded shadow-sm mb-3" alt="Review Image 1" style="max-height: 170px; object-fit: cover; width: 100%;">
+                            <p class="card-text mt-2">{!! nl2br(e($review->paragraph_1)) !!}</p>
                         </div>
-                        <div class="col-md-8">
-                            <p class="card-text">{!! nl2br(e($review->paragraph_1)) !!}</p>
-                        </div>
+                        <div class="col-md-8"></div>
                     </div>
-                    <div class="row g-3 align-items-center mt-2">
-                        <div class="col-md-8 order-md-2">
-                            <p class="card-text">{!! nl2br(e($review->paragraph_2)) !!}</p>
+                    <div class="row g-3 align-items-center">
+                        <div class="col-md-4">
+                            <img src="{{ asset('images/' . basename($review->image_2)) }}" class="img-fluid rounded shadow-sm mb-3" alt="Review Image 1" style="max-height: 170px; object-fit: cover; width: 100%;">
+                            <p class="card-text mt-2">{!! nl2br(e($review->paragraph_2)) !!}</p>
                         </div>
-                        <div class="col-md-4 order-md-1">
-                            <img src="{{ asset('images/' . basename($review->image_2)) }}" class="img-fluid rounded shadow-sm mb-3" alt="Review Image 2" style="max-height: 170px; object-fit: cover; width: 100%;">
-                        </div>
+                        <div class="col-md-8"></div>
                     </div>
+                    @if($review->logo1 || $review->logo2 || $review->logo3)
+                        <div class="mt-4">
+                            <h5>Explore Trusted Reviews</h5>
+                            <div class="row">
+                                @if($review->logo1 && $review->link1)
+                                    <div class="col-md-4 mb-3 d-flex align-items-center justify-content-center">
+                                        <img src="{{ asset('images/' . basename($review->logo1)) }}" alt="Logo 1" class="img-fluid me-2 mr-2" style="height: 50px; width: 50px;">
+                                        <a href="{{ $review->link1 }}" target="_blank" rel="noopener">Link 1</a>
+                                    </div>
+                                @endif
+                                @if($review->logo2 && $review->link2)
+                                    <div class="col-md-4 mb-3 d-flex align-items-center justify-content-center">
+                                        <img src="{{ asset('images/' . basename($review->logo2)) }}" alt="Logo 2" class="img-fluid me-2 mr-2" style="height: 50px; width: 50px;">
+                                        <a href="{{ $review->link2 }}" target="_blank" rel="noopener">Link 2</a>
+                                    </div>
+                                @endif
+                                @if($review->logo3 && $review->link3)
+                                    <div class="col-md-4 mb-3 d-flex align-items-center justify-content-center">
+                                        <img src="{{ asset('images/' . basename($review->logo3)) }}" alt="Logo 3" class="img-fluid me-2 mr-2" style="height: 50px; width: 50px;">
+                                        <a href="{{ $review->link3 }}" target="_blank" rel="noopener">Link 3</a>
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>

@@ -25,6 +25,15 @@ return new class extends Migration
             $table->text('paragraph_2')->nullable();
 
             $table->tinyInteger('rating')->unsigned()->nullable();
+
+            $table->string('logo1')->nullable();
+            $table->text('link1')->nullable();
+
+            $table->string('logo2')->nullable();
+            $table->text('link2')->nullable();
+
+            $table->string('logo3')->nullable();
+            $table->text('link3')->nullable();
             $table->timestamps();
 
         });

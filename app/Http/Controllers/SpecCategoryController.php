@@ -65,17 +65,18 @@ class SpecCategoryController extends Controller
         return redirect()->route('category.index')->with('success', 'SpecCategory created successfully.');
     }
 
-    public function edit(SpecCategory $specCategory)
+    public function edit($id)
     {
+        $specCategory = SpecCategory::FindOrFail($id);
         return view('category.edit', [
             'specCategory' => $specCategory,
         ]);
     }
 
-    public function update(Request $request, SpecCategory $specCategory)
+    public function update(Request $request, $id)
     {
         $data = $request->all();
-        $this->specCategoryRepository->update($data, $specCategory->id);
+        $this->specCategoryRepository->update($data, $id);
         return redirect()->route('category.index')->with('success', 'SpecCategory updated successfully.');
     }
 

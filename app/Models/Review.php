@@ -18,6 +18,12 @@ class Review extends Model
         'image_2',
         'paragraph_2',
         'rating',
+        'logo1',
+        'link1',
+        'logo2',
+        'link2',
+        'logo3',
+        'link3',
     ];
 
     public function device()

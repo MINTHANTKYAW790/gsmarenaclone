@@ -27,14 +27,14 @@
 <div class="container-fluid">
     <div class="card">
         <div class="card-body p-3">
-            <form action="{{ route('category.update',['category' => $brand]) }}" method="POST">
+            <form action="{{ route('category.update',[$specCategory->id]) }}" method="POST">
                 @csrf
                 @method('PUT')
                 <div class="form-group row col-md-7">
                     <label for="name" class="col-sm-4 col-form-label">Name <span class="text-danger">*</span></label>
                     <div class="col-sm-8">
                         <input type="text" id="name" class="form-control form-control-sm @error('name') is-invalid @enderror"
-                            name="name" value="{{ old('name', $brand->name) }}">
+                            name="name" value="{{ old('name', $specCategory->name) }}">
                         @error('name')
                         <span class="text-danger">{{ $message }}</span>
                         @enderror

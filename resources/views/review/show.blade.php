@@ -79,6 +79,54 @@
                 <div class="col-md-9">{{ $review->rating }} / 5</div>
             </div>
 
+            <div class="row mb-2">
+                <div class="col-md-3 font-weight-bold">logo1:</div>
+                <div class="col-md-9">
+                    @if($review->logo1)
+                        <img src="{{ asset('images/' . basename($review->logo1)) }}" alt="logo1" height="150">
+                    @else
+                        <span>No image available</span>
+                    @endif
+                </div>
+            </div>
+
+            <div class="row mb-2">
+                <div class="col-md-3 font-weight-bold">link2:</div>
+                <div class="col-md-9">{{ $review->link1 }}</div>
+            </div>
+
+            <div class="row mb-2">
+                <div class="col-md-3 font-weight-bold">logo2:</div>
+                <div class="col-md-9">
+                    @if($review->logo2)
+                        <img src="{{ asset('images/' . basename($review->logo2)) }}" alt="logo1" height="150">
+                    @else
+                        <span>No image available</span>
+                    @endif
+                </div>
+            </div>
+
+            <div class="row mb-2">
+                <div class="col-md-3 font-weight-bold">link2:</div>
+                <div class="col-md-9">{{ $review->link1 }}</div>
+            </div>
+
+            <div class="row mb-2">
+                <div class="col-md-3 font-weight-bold">logo3:</div>
+                <div class="col-md-9">
+                    @if($review->logo3)
+                        <img src="{{ asset('images/' . basename($review->logo3)) }}" alt="logo1" height="150">
+                    @else
+                        <span>No image available</span>
+                    @endif
+                </div>
+            </div>
+
+            <div class="row mb-2">
+                <div class="col-md-3 font-weight-bold">link3:</div>
+                <div class="col-md-9">{{ $review->link1 }}</div>
+            </div>
+
         </div>
     </div>
 </div>
