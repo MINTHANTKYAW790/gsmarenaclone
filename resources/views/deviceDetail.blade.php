@@ -99,9 +99,13 @@
                     <div style="margin-top: 24px;">
                         @if ($device->reviews->isNotEmpty())
                         <a href="{{ route('devices.reviews', $device->id) }}" class=" ml-2 btn btn-primary btn-sm px-1 py-0 " style=" white-space: nowrap;">Read Review</a>
-                        @else
-                        <a href="{{ route('createReview') }}" class=" ml-2 btn btn-primary btn-sm px-1 py-0 " style=" white-space: nowrap;">Write Feedback</a>
                         @endif
+                    </div>
+                    <div style="margin-top: 24px;">
+                        @if ($device->feedbacks->isNotEmpty())
+                            <a href="{{ route('feedback.show', $device->feedbacks->first()->id) }}" class="ml-2 btn btn-success btn-sm px-1 py-0" style="white-space: nowrap; color: #fff;">Read Feedback</a>
+                        @endif
+                        <a href="{{ route('feedback.create', ['device_id' => $device->id]) }}" class="ml-2 btn btn-warning btn-sm px-1 py-0" style="white-space: nowrap; color: #fff;">Write Feedback</a>
                     </div>
                 </div>
             </div>

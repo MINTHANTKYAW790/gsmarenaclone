@@ -6,35 +6,42 @@
     .review-form-card {
         max-width: 700px;
         margin: 40px auto;
-        box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
         border-radius: 16px;
         border: none;
     }
+
     .review-form-label {
         font-weight: 600;
         color: #333;
     }
+
     .img-container {
         cursor: pointer;
         transition: box-shadow 0.2s;
         border: 2px dashed #e0e0e0;
     }
+
     .img-container:hover {
         box-shadow: 0 0 0 2px #007bff;
         border-color: #007bff;
     }
+
     .img-container img {
         object-fit: cover;
         max-height: 220px;
     }
+
     .btn-cancel {
         background: #f5f5f5;
         color: #333;
         border: 1px solid #ddd;
     }
+
     .btn-cancel:hover {
         background: #e0e0e0;
     }
+
     .form-group {
         margin-bottom: 1.5rem;
     }
@@ -45,26 +52,25 @@
         <h4 class="mb-0">Create Device Review</h4>
     </div>
     <div class="card-body p-4">
-        <form action="{{ route('storeReview') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('feedback.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
-            <div class="form-group">
-                <label for="device_id" class="review-form-label">Select Device</label>
-                <select name="device_id" class="form-control @error('device_id') is-invalid @enderror" id="device_id" required>
-                    <option value="">-- Select Device --</option>
-                    @foreach ($devices as $device)
-                        <option value="{{ $device->id }}">{{ $device->name }}</option>
-                    @endforeach
-                </select>
-                @error('device_id') <small class="text-danger">{{ $message }}</small> @enderror
-            </div>
+            <select name="device_id" class="form-control @error('device_id') is-invalid @enderror" id="device_id" required>
+                <option value="">-- Select Device --</option>
+                @foreach ($devices as $device)
+                <option value="{{ $device->id }}"
+                    {{ old('device_id', $selectedDeviceId ?? '') == $device->id ? 'selected' : '' }}>
+                    {{ $device->name }}
+                </option>
+                @endforeach
+            </select>
 
             <div class="form-group">
                 <label for="heading" class="review-form-label">Heading <span class="text-danger">*</span></label>
                 <input type="text" id="heading" class="form-control @error('heading') is-invalid @enderror"
                     name="heading" placeholder="Enter review heading" required>
                 @error('heading')
-                    <span class="text-danger">{{ $message }}</span>
+                <span class="text-danger">{{ $message }}</span>
                 @enderror
             </div>
 
@@ -83,7 +89,7 @@
                 <textarea id="paragraph_1" class="form-control @error('paragraph_1') is-invalid @enderror"
                     name="paragraph_1" rows="4" placeholder="Write your first paragraph..." required></textarea>
                 @error('paragraph_1')
-                    <span class="text-danger">{{ $message }}</span>
+                <span class="text-danger">{{ $message }}</span>
                 @enderror
             </div>
 
@@ -93,10 +99,10 @@
                     <option value="">-- Select Rating --</option>
                     @for ($i = 1; $i <= 5; $i++)
                         <option value="{{ $i }}">{{ $i }}</option>
-                    @endfor
+                        @endfor
                 </select>
                 @error('rating')
-                    <span class="text-danger ml-2">{{ $message }}</span>
+                <span class="text-danger ml-2">{{ $message }}</span>
                 @enderror
             </div>
 

@@ -59,7 +59,7 @@
                         <label for="password_confirmation" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
                         <div class="col-md-6">
                             <div class="input-group mb-3">
-                                <input id="password_confirmation" type="password_confirmation" class="form-control form-control-sm mr-0 @error('password_confirmation') is-invalid @enderror" name="password_confirmation" required autocomplete="current-password_confirmation" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                <input id="password_confirmation" type="password" class="form-control form-control-sm mr-0 @error('password_confirmation') is-invalid @enderror" name="password_confirmation" required autocomplete="current-password_confirmation" aria-label="Recipient's username" aria-describedby="basic-addon2">
                                 @error('password_confirmation')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
