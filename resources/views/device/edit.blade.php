@@ -51,7 +51,7 @@
                     </div>
                 </div>
                 <div class="form-group row col-md-7">
-                    <label for="release_date" class="col-sm-4 col-form-label">Website Url <span class="text-danger">*</span></label>
+                    <label for="release_date" class="col-sm-4 col-form-label">Release Date <span class="text-danger">*</span></label>
                     <div class="col-sm-8">
                         <input type="text" id="release_date" class="form-control form-control-sm @error('release_date') is-invalid @enderror"
                             name="release_date" value="{{ old('release_date', $device->release_date) }}">
@@ -61,7 +61,7 @@
                     </div>
                 </div>
                 <div class="form-group row col-md-7">
-                    <label for="price" class="col-sm-4 col-form-label">Website Url <span class="text-danger">*</span></label>
+                    <label for="price" class="col-sm-4 col-form-label">Price <span class="text-danger">*</span></label>
                     <div class="col-sm-8">
                         <input type="text" id="price" class="form-control form-control-sm @error('price') is-invalid @enderror"
                             name="price" value="{{ old('price', $device->price) }}">
@@ -71,7 +71,7 @@
                     </div>
                 </div>
                 <div class="form-group row col-md-7">
-                    <label for="image_url" class="col-sm-4">image_url<span class="text-danger">*</span></label>
+                    <label for="image_url" class="col-sm-4">Image<span class="text-danger">*</span></label>
                     <div class="col-sm-8">
                         <input type="file" id="image_url" hidden name="image_url" accept="image/*">
                         <div class="align-items-center bg-light d-flex justify-content-center rounded w-100 img-container" style="height: 250px;">
@@ -82,7 +82,7 @@
                     </div>
                 </div>
                 <div class="form-group row col-md-7">
-                    <label for="os" class="col-sm-4 col-form-label">Website Url <span class="text-danger">*</span></label>
+                    <label for="os" class="col-sm-4 col-form-label">Operation System <span class="text-danger">*</span></label>
                     <div class="col-sm-8">
                         <input type="text" id="os" class="form-control form-control-sm @error('os') is-invalid @enderror"
                             name="os" value="{{ old('os', $device->os) }}">
@@ -92,7 +92,7 @@
                     </div>
                 </div>
                 <div class="form-group row col-md-7">
-                    <label for="device_type" class="col-sm-4 col-form-label">Website Url <span class="text-danger">*</span></label>
+                    <label for="device_type" class="col-sm-4 col-form-label">Device Type<span class="text-danger">*</span></label>
                     <div class="col-sm-8">
                         <input type="text" id="device_type" class="form-control form-control-sm @error('device_type') is-invalid @enderror"
                             name="device_type" value="{{ old('device_type', $device->device_type) }}">
