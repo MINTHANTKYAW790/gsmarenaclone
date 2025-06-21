@@ -13,7 +13,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Faker::create();
+        // $faker = Faker::create();
 
         // Seed Brands
         $brands = [
