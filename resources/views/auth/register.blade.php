@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Register</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/js/app.js'])
 </head>
 @extends('layouts.application')
 
